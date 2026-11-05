@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#172638"/><stop offset="1" stop-color="#080f19"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="0.9" y2="1"><stop stop-color="#f2d891"/><stop offset=".52" stop-color="#c59a43"/><stop offset="1" stop-color="#8c6627"/></linearGradient>
+ <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#159ac0"/><stop offset="1" stop-color="#075477"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter>
+</defs>
+<rect width="512" height="512" fill="#0b1420"/>
+<g transform="translate(38.4 38.4) scale(0.85)">
+
+
+<path d="M256 38 430 91v151c0 111-76 183-174 232C158 425 82 353 82 242V91Z" fill="#090e16" opacity=".55" filter="url(#shadow)"/>
+<path d="M256 40 424 91v148c0 107-72 176-168 224C160 415 88 346 88 239V91Z" fill="#f4efe2" stroke="url(#gold)" stroke-width="8"/>
+<path d="M256 58 406 104v133c0 94-61 155-150 202-89-47-150-108-150-202V104Z" fill="#193d69" stroke="#b32632" stroke-width="17"/>
+<path d="M256 82 385 122v111c0 80-51 133-129 176-78-43-129-96-129-176V122Z" fill="url(#blue)" stroke="#c9a14d" stroke-width="5"/>
+<path d="M112 96h288v55H112z" fill="#b62e38"/><path d="M112 143h288v19H112z" fill="#243d80"/>
+<text x="256" y="136" text-anchor="middle" font-family="Arial,sans-serif" font-size="42" font-weight="800" letter-spacing="2" fill="#fff7e7">EsPCEx</text>
+<!-- castle -->
+<g fill="url(#gold)" stroke="#f8dfa0" stroke-width="3" stroke-linejoin="round">
+ <path d="M184 211v-31h20v-18h20v18h20v-31h24v31h20v-18h20v18h20v31l-10 9v63H194v-63Z"/>
+ <path d="M174 282h164v17H174z"/><path d="M205 238h20v35h-20zM245 225h22v48h-22zM287 238h20v35h-20z" fill="#275d76" stroke="#f2d28b"/>
+ <path d="M175 213h162v14H175z"/>
+</g>
+<g fill="#e8e6dd" stroke="#c7c2b6" stroke-width="2"><path d="m256 294 12 19 22 3-16 15 4 22-22-11-22 11 4-22-16-15 22-3z"/></g>
+<!-- oak sprigs -->
+<g fill="none" stroke="url(#gold)" stroke-width="9" stroke-linecap="round">
+ <path d="M245 360c-48 5-83 27-109 68M267 360c48 5 83 27 109 68"/>
+</g>
+<g fill="url(#gold)" stroke="#f4d88f" stroke-width="2">
+ <path d="M204 363c-21-20-44-13-45 8 18 3 31 1 45-8ZM183 382c-26-11-43 2-37 21 18-3 29-9 37-21ZM161 404c-25-3-38 14-26 30 15-8 23-17 26-30ZM231 373c-18-25-40-23-46-5 16 8 29 9 46 5ZM308 363c21-20 44-13 45 8-18 3-31 1-45-8ZM329 382c26-11 43 2 37 21-18-3-29-9-37-21ZM351 404c25-3 38 14 26 30-15-8-23-17-26-30ZM281 373c18-25 40-23 46-5-16 8-29 9-46 5Z"/>
+</g>
+<path d="M217 430q39 24 78 0" fill="none" stroke="#f0d38c" stroke-width="6" stroke-linecap="round"/>
+</g>
+</svg>
