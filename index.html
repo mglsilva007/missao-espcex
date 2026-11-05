@@ -262,6 +262,50 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
 [data-theme="light"] .edit-row select,[data-theme="light"] .edit-row input{background:#fffefa;color:#292820;color-scheme:light}
 [data-theme="light"] .avatar-large{background:radial-gradient(circle at 30% 25%,rgba(198,164,95,.2),transparent 60%),#eee8da}
 
+
+
+/* Ajuste fino do perfil e tipografia da data da prova */
+.count-bottom{align-items:center;gap:12px}
+.exam-date-block{display:flex;align-items:center;gap:11px;min-width:0}
+.exam-date-calendar{display:flex;align-items:center;gap:7px;min-width:0}
+.exam-date-calendar strong{font-family:Georgia,'Times New Roman',serif;font-size:42px;line-height:.88;font-weight:700;letter-spacing:-.065em;color:var(--gold-light);font-variant-numeric:lining-nums tabular-nums;text-shadow:0 2px 18px rgba(198,164,95,.13)}
+.exam-date-calendar span{max-width:90px;color:var(--soft);font-size:9px;font-weight:800;letter-spacing:.16em;line-height:1.35;text-transform:uppercase}
+.exam-date-year,.exam-date-time{display:grid;gap:3px;align-content:center}
+.exam-date-year small,.exam-date-time small{font-size:7px;letter-spacing:.16em;font-weight:800;color:var(--muted);white-space:nowrap}
+.exam-date-year strong{font-size:13px;line-height:1;color:var(--soft);font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.exam-date-divider{width:1px;height:28px;background:linear-gradient(180deg,transparent,rgba(198,164,95,.38),transparent);margin:0 1px}
+.exam-date-time strong{font-size:17px;line-height:1.05;letter-spacing:.045em;color:var(--gold-light);font-weight:780;font-variant-numeric:tabular-nums}
+.avatar-preview-actions{justify-content:space-between}
+.avatar-preview-actions .save{background:var(--gold);color:#17140e;border-color:var(--gold);font-weight:800}
+.photo-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.avatar-crop-dialog{width:min(470px,calc(100% - 24px));max-height:92vh;overflow:auto;padding:20px}
+.avatar-crop-stage{position:relative;width:min(300px,76vw);aspect-ratio:1/1;margin:18px auto 15px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 30% 25%,rgba(198,164,95,.14),transparent 60%),#101720;border:2px solid var(--gold-dim);box-shadow:0 0 0 8px rgba(198,164,95,.045),0 18px 45px rgba(0,0,0,.24);touch-action:none;cursor:grab;user-select:none}
+.avatar-crop-stage.is-dragging{cursor:grabbing}
+.avatar-crop-stage img{position:absolute;display:block;max-width:none!important;max-height:none!important;object-fit:fill;pointer-events:none;user-select:none;transform:translate(-50%,-50%) scale(var(--crop-zoom,1));transform-origin:center center}
+.crop-guide{position:absolute;inset:13%;border:1px solid rgba(255,255,255,.17);border-radius:50%;box-shadow:0 0 0 999px rgba(2,6,10,.045);pointer-events:none}
+.crop-tools{width:min(360px,100%);margin:0 auto}
+.crop-zoom-label{display:flex;align-items:center;justify-content:space-between;color:var(--soft);font-size:8px;letter-spacing:.16em;font-weight:800}
+.crop-zoom-label output{color:var(--gold-light);font-size:10px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.crop-zoom-range{display:block;width:100%;margin:9px 0 3px;accent-color:var(--gold-light);cursor:pointer}
+.crop-help{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:8px}
+.crop-help button{border:0;background:transparent;color:var(--gold-light);font-size:9px;font-weight:750;padding:5px}
+.crop-dialog-actions{margin-top:17px}
+.crop-dialog-actions .save{background:var(--gold);color:#17140e;border-color:var(--gold);font-weight:800}
+[data-theme="light"] .avatar-crop-stage{background:#eee8da}
+[data-theme="light"] .crop-guide{border-color:rgba(32,35,39,.22)}
+[data-theme="light"] .exam-date-calendar span{color:#635b4d}
+[data-theme="light"] .exam-date-year strong{color:#504a3d}
+@media(max-width:480px){
+  .count-bottom{align-items:flex-start;flex-wrap:wrap}
+  .exam-date-block{gap:8px}
+  .exam-date-calendar strong{font-size:38px}
+  .exam-date-calendar span{font-size:8px;letter-spacing:.12em;max-width:78px}
+  .exam-date-year small,.exam-date-time small{font-size:6px}
+  .exam-date-time strong{font-size:15px}
+  .count-bottom .quiet-btn{margin-left:auto;align-self:center}
+  .avatar-crop-dialog{padding:15px}
+}
+
 </style>
 </head>
 <body>
@@ -295,7 +339,15 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
         <div class="clock-unit"><b id="countMinutes">00</b><small>MINUTOS</small></div><span class="clock-separator">:</span>
         <div class="clock-unit"><b id="countSeconds">00</b><small>SEGUNDOS</small></div>
       </div>
-      <div class="count-bottom"><span class="count-date" id="countDate">11 de setembro de 2027 · 08:00</span><button class="quiet-btn" id="editDateBtn" type="button">Ajustar data e hora</button></div>
+      <div class="count-bottom">
+        <div class="exam-date-block" id="examDateDisplay" aria-label="Data e horário programados para a prova">
+          <div class="exam-date-calendar"><strong id="examDateDay">11</strong><span id="examDateMonth">SETEMBRO</span></div>
+          <div class="exam-date-year"><small>ANO DA PROVA</small><strong id="examDateYear">2027</strong></div>
+          <div class="exam-date-divider" aria-hidden="true"></div>
+          <div class="exam-date-time"><small>HORÁRIO</small><strong id="examDateTime">08:00</strong></div>
+        </div>
+        <button class="quiet-btn" id="editDateBtn" type="button">Ajustar data e hora</button>
+      </div>
     </aside>
   </section>
 
@@ -358,8 +410,25 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
   <div class="avatar-preview-content">
     <div class="dialog-topline"><div><h2 class="dialog-title">Foto de perfil</h2><p class="dialog-copy">Visualização ampliada do seu perfil.</p></div><button type="button" class="dialog-x" id="closeAvatarPreviewBtn" aria-label="Fechar">×</button></div>
     <div class="avatar-large" id="avatarLargePreview"><span id="avatarLargeInitial">M</span><img id="avatarLargeImage" alt="Foto de perfil ampliada"></div>
-    <div class="dialog-actions"><button type="button" id="closeAvatarPreviewAction">Fechar</button></div>
+    <div class="dialog-actions avatar-preview-actions"><button type="button" id="closeAvatarPreviewAction">Fechar</button><button type="button" class="save" id="adjustAvatarPreviewBtn">Ajustar enquadramento</button></div>
   </div>
+</dialog>
+
+<dialog id="avatarCropDialog" class="avatar-crop-dialog">
+  <div class="dialog-topline">
+    <div><h2 class="dialog-title">Ajustar foto de perfil</h2><p class="dialog-copy">Arraste a imagem para posicionar seu rosto. Use o controle para aproximar ou afastar.</p></div>
+    <button type="button" class="dialog-x" id="closeAvatarCropBtn" aria-label="Fechar">×</button>
+  </div>
+  <div class="avatar-crop-stage" id="avatarCropStage" role="group" tabindex="0" aria-label="Área de enquadramento da foto. Arraste ou use as setas do teclado para ajustar a posição.">
+    <img id="avatarCropImage" alt="Prévia do enquadramento da foto de perfil" draggable="false">
+    <span class="crop-guide" aria-hidden="true"></span>
+  </div>
+  <div class="crop-tools">
+    <label class="crop-zoom-label" for="avatarZoomRange"><span>ZOOM</span><output id="avatarZoomValue">100%</output></label>
+    <input id="avatarZoomRange" class="crop-zoom-range" type="range" min="1" max="3" step="0.01" value="1">
+    <div class="crop-help"><span>← Arraste para reposicionar</span><button type="button" id="resetAvatarCropBtn">Centralizar</button></div>
+  </div>
+  <div class="dialog-actions crop-dialog-actions"><button type="button" id="cancelAvatarCropBtn">Cancelar</button><button type="button" class="save" id="saveAvatarCropBtn">Salvar foto</button></div>
 </dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -397,7 +466,7 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
         <div class="settings-section-title"><span class="settings-icon">01</span><div><h3>Perfil do estudante</h3><p>Como você aparece no painel.</p></div></div>
         <div class="profile-setting">
           <div class="settings-avatar" id="settingsAvatarPreview"><span id="settingsAvatarInitial">M</span><img id="avatarSettingsImage" alt="Prévia da foto de perfil"></div>
-          <div class="profile-setting-actions"><strong>Foto de perfil</strong><span>Use uma imagem quadrada para um melhor enquadramento.</span><button type="button" class="subtle-action" id="chooseAvatarBtn">Escolher foto</button></div>
+          <div class="profile-setting-actions"><strong>Foto de perfil</strong><span>Escolha uma imagem e ajuste o enquadramento para centralizar seu rosto.</span><div class="photo-actions"><button type="button" class="subtle-action" id="chooseAvatarBtn">Escolher foto</button><button type="button" class="subtle-action" id="adjustAvatarBtn">Ajustar posição</button></div></div>
         </div>
         <label class="setting-label" for="settingsName">Nome exibido</label>
         <input class="setting-input" id="settingsName" type="text" maxlength="32" autocomplete="name" placeholder="Seu nome" required>
@@ -467,19 +536,19 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
   ];
   const $=id=>document.getElementById(id);
   const weekdayIds=['sun','mon','tue','wed','thu','fri','sat'];
-  const emptyState=()=>({done:{},cycle:'A',avatar:'',displayName:'Miguel',motivation:'“Em todo trabalho há proveito, mas a mera conversa conduz à pobreza.”',motivationCredit:'Provérbios 14:23',examDate:defaultExamDate(),examTime:'08:00',theme:'dark',displayDensity:'comfortable',customSchedules:{},trackingStartDate:'',studyLog:{},mockResults:[],notificationsEnabled:false});
+  const emptyState=()=>({done:{},cycle:'A',avatar:'',avatarOriginal:'',avatarZoom:1,avatarPanX:0,avatarPanY:0,displayName:'Miguel',motivation:'“Em todo trabalho há proveito, mas a mera conversa conduz à pobreza.”',motivationCredit:'Provérbios 14:23',examDate:defaultExamDate(),examTime:'08:00',theme:'dark',displayDensity:'comfortable',customSchedules:{},trackingStartDate:'',studyLog:{},mockResults:[],notificationsEnabled:false});
   function isoDate(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
   function secondSaturdaySeptember(year){const first=new Date(year,8,1);const offset=(6-first.getDay()+7)%7;return new Date(year,8,1+offset+7)}
   function defaultExamDate(){const now=new Date();let d=secondSaturdaySeptember(now.getFullYear());if(d<=new Date(now.getFullYear(),now.getMonth(),now.getDate()))d=secondSaturdaySeptember(now.getFullYear()+1);return isoDate(d)}
   function loadState(){
     try{
       const current=JSON.parse(localStorage.getItem(STORAGE_KEY)||localStorage.getItem(PREVIOUS_KEY)||localStorage.getItem(PREVIOUS_2_KEY)||localStorage.getItem(PREVIOUS_3_KEY)||localStorage.getItem(LEGACY_KEY)||'null');
-      if(current&&typeof current==='object')return {...emptyState(),...current,done:current.done&&typeof current.done==='object'?current.done:{},cycle:current.cycle==='B'?'B':'A',customSchedules:current.customSchedules&&typeof current.customSchedules==='object'?current.customSchedules:{},theme:current.theme==='light'?'light':'dark',displayName:typeof current.displayName==='string'?current.displayName:'Miguel',motivation:typeof current.motivation==='string'?current.motivation:emptyState().motivation,motivationCredit:typeof current.motivationCredit==='string'?current.motivationCredit:'Provérbios 14:23',displayDensity:current.displayDensity==='compact'?'compact':'comfortable',studyLog:current.studyLog&&typeof current.studyLog==='object'?current.studyLog:{},mockResults:Array.isArray(current.mockResults)?current.mockResults:[],notificationsEnabled:current.notificationsEnabled===true};
+      if(current&&typeof current==='object')return {...emptyState(),...current,done:current.done&&typeof current.done==='object'?current.done:{},cycle:current.cycle==='B'?'B':'A',customSchedules:current.customSchedules&&typeof current.customSchedules==='object'?current.customSchedules:{},theme:current.theme==='light'?'light':'dark',displayName:typeof current.displayName==='string'?current.displayName:'Miguel',motivation:typeof current.motivation==='string'?current.motivation:emptyState().motivation,motivationCredit:typeof current.motivationCredit==='string'?current.motivationCredit:'Provérbios 14:23',displayDensity:current.displayDensity==='compact'?'compact':'comfortable',studyLog:current.studyLog&&typeof current.studyLog==='object'?current.studyLog:{},mockResults:Array.isArray(current.mockResults)?current.mockResults:[],notificationsEnabled:current.notificationsEnabled===true,avatarOriginal:typeof current.avatarOriginal==='string'?current.avatarOriginal:'',avatarZoom:Number.isFinite(Number(current.avatarZoom))?Math.min(3,Math.max(1,Number(current.avatarZoom))):1,avatarPanX:Number.isFinite(Number(current.avatarPanX))?Number(current.avatarPanX):0,avatarPanY:Number.isFinite(Number(current.avatarPanY))?Number(current.avatarPanY):0};
     }catch(e){}
     return emptyState();
   }
   let state=loadState();
-  function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){showToast('Armazenamento cheio. Exporte um backup ou use uma foto menor.')}}
+  function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));return true}catch(e){showToast('Armazenamento cheio. Exporte um backup ou use uma foto menor.');return false}}
   function showToast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.classList.remove('show'),2500)}
   function currentDay(){return days.find(d=>d.id===weekdayIds[new Date().getDay()])}
   function scheduleKey(day){return day.id}
@@ -544,13 +613,13 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
     });
     updateProgress(day,record);saveState();renderPerformance();
   }
-  function formatExamDate(iso,time){return parseLocalDate(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'})+' · '+time}
+  function renderExamDate(){const date=parseLocalDate(state.examDate);$('examDateDay').textContent=String(date.getDate()).padStart(2,'0');$('examDateMonth').textContent=date.toLocaleDateString('pt-BR',{month:'long'}).toLocaleUpperCase('pt-BR');$('examDateYear').textContent=String(date.getFullYear());$('examDateTime').textContent=state.examTime||'08:00';$('examDateDisplay').setAttribute('aria-label','Prova em '+date.toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'})+' às '+(state.examTime||'08:00'));}
   function updateCountdown(){
     const dateParts=state.examDate.split('-').map(Number),timeParts=(state.examTime||'08:00').split(':').map(Number);
     const target=new Date(dateParts[0],dateParts[1]-1,dateParts[2],timeParts[0]||0,timeParts[1]||0,0,0);const diff=target.getTime()-Date.now();
     if(diff<=0){$('countNumber').innerHTML='0<small>DIAS</small>';$('countHours').textContent='00';$('countMinutes').textContent='00';$('countSeconds').textContent='00'}
     else{const seconds=Math.floor(diff/1000);const d=Math.floor(seconds/86400);const h=Math.floor((seconds%86400)/3600);const m=Math.floor((seconds%3600)/60);const s=seconds%60;$('countNumber').innerHTML=d.toLocaleString('pt-BR')+'<small>DIAS</small>';$('countHours').textContent=String(h).padStart(2,'0');$('countMinutes').textContent=String(m).padStart(2,'0');$('countSeconds').textContent=String(s).padStart(2,'0')}
-    $('countDate').textContent=formatExamDate(state.examDate,state.examTime||'08:00');
+    renderExamDate();
   }
   function formatStudyTime(minutes){if(!minutes)return '0h';const hours=Math.floor(minutes/60),mins=minutes%60;return hours+'h'+(mins?' '+mins+'min':'')}
   function weeklyPerformance(){
@@ -597,6 +666,63 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
   function renderPerformance(){
     const stats=weeklyPerformance();$('weeklyHours').textContent=formatStudyTime(stats.minutes);$('weeklyHoursNote').textContent=stats.completed+' de '+stats.planned+' sessões contabilizadas';$('weeklyCompliance').textContent=stats.percent+'%';$('weeklyComplianceNote').textContent=stats.completed+' concluídas · '+Math.max(0,stats.planned-stats.completed)+' pendentes';
     $('mockCount').textContent=String(state.mockResults.length);const averageScore=average(state.mockResults.map(scorePercent));$('averageScore').textContent=averageScore===null?'—':averageScore.toFixed(1).replace('.',',')+'%';renderPerformanceChart();renderRecentResults();
+  }
+  let cropSourceData='';
+  let cropSourceImage=null;
+  let cropZoom=1;
+  let cropPanX=0;
+  let cropPanY=0;
+  let cropPointer=null;
+  function cropBaseSize(){
+    const aspect=cropSourceImage?cropSourceImage.naturalWidth/cropSourceImage.naturalHeight:1;
+    return {width:aspect>=1?512*aspect:512,height:aspect>=1?512:512/aspect,shortSide:512};
+  }
+  function clampCropPosition(){
+    const base=cropBaseSize();
+    cropPanX=Math.max(-(base.width*cropZoom-512)/(2*512),Math.min((base.width*cropZoom-512)/(2*512),cropPanX));
+    cropPanY=Math.max(-(base.height*cropZoom-512)/(2*512),Math.min((base.height*cropZoom-512)/(2*512),cropPanY));
+  }
+  function renderCropPreview(){
+    if(!cropSourceImage)return;
+    clampCropPosition();
+    const stage=$('avatarCropStage'),img=$('avatarCropImage'),base=cropBaseSize(),frame=stage.clientWidth||280;
+    img.style.width=(base.width/512*100)+'%';img.style.height=(base.height/512*100)+'%';
+    img.style.left='calc(50% + '+(cropPanX*frame)+'px)';img.style.top='calc(50% + '+(cropPanY*frame)+'px)';
+    img.style.setProperty('--crop-zoom',String(cropZoom));
+    $('avatarZoomRange').value=String(cropZoom);$('avatarZoomValue').textContent=Math.round(cropZoom*100)+'%';
+  }
+  function openAvatarCropper(source,options={}){
+    if(!source){$('avatarInput').click();return}
+    cropSourceData=source;cropZoom=Number.isFinite(Number(options.zoom))?Math.min(3,Math.max(1,Number(options.zoom))):1;cropPanX=Number.isFinite(Number(options.panX))?Number(options.panX):0;cropPanY=Number.isFinite(Number(options.panY))?Number(options.panY):0;
+    const image=new Image();image.onload=()=>{cropSourceImage=image;$('avatarCropImage').src=source;renderCropPreview();$('avatarCropDialog').showModal();requestAnimationFrame(renderCropPreview)};image.onerror=()=>showToast('Não foi possível preparar essa imagem.');image.src=source;
+  }
+  function openCurrentAvatarCropper(){
+    const source=state.avatarOriginal||state.avatar;
+    if(!source){$('avatarInput').click();return}
+    openAvatarCropper(source,{zoom:state.avatarZoom||1,panX:state.avatarPanX||0,panY:state.avatarPanY||0});
+  }
+  function prepareAvatarSource(dataUrl){
+    const image=new Image();image.onload=()=>{
+      const maxSize=1600,scale=Math.min(1,maxSize/Math.max(image.naturalWidth,image.naturalHeight));
+      const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+      const context=canvas.getContext('2d');context.drawImage(image,0,0,canvas.width,canvas.height);
+      openAvatarCropper(canvas.toDataURL('image/jpeg',.86));
+      showToast('Ajuste a foto e salve o enquadramento.');
+    };image.onerror=()=>showToast('Não foi possível abrir essa imagem.');image.src=dataUrl;
+  }
+  function saveAvatarCrop(){
+    if(!cropSourceImage)return;
+    const side=Math.min(cropSourceImage.naturalWidth,cropSourceImage.naturalHeight)/cropZoom;
+    const centerX=cropSourceImage.naturalWidth/2-cropPanX*Math.min(cropSourceImage.naturalWidth,cropSourceImage.naturalHeight)/cropZoom;
+    const centerY=cropSourceImage.naturalHeight/2-cropPanY*Math.min(cropSourceImage.naturalWidth,cropSourceImage.naturalHeight)/cropZoom;
+    const sx=Math.max(0,Math.min(cropSourceImage.naturalWidth-side,centerX-side/2));
+    const sy=Math.max(0,Math.min(cropSourceImage.naturalHeight-side,centerY-side/2));
+    const canvas=document.createElement('canvas');canvas.width=512;canvas.height=512;const context=canvas.getContext('2d');
+    context.drawImage(cropSourceImage,sx,sy,side,side,0,0,512,512);
+    const previous={avatar:state.avatar,avatarOriginal:state.avatarOriginal,avatarZoom:state.avatarZoom,avatarPanX:state.avatarPanX,avatarPanY:state.avatarPanY};
+    state.avatar=canvas.toDataURL('image/jpeg',.9);state.avatarOriginal=cropSourceData;state.avatarZoom=cropZoom;state.avatarPanX=cropPanX;state.avatarPanY=cropPanY;
+    if(!saveState()){Object.assign(state,previous);return}
+    applyAvatar();$('avatarCropDialog').close();showToast('Foto de perfil e enquadramento salvos.');
   }
   function applyAvatar(){const button=$('avatarButton'),img=$('avatarImage'),preview=$('settingsAvatarPreview'),previewImg=$('avatarSettingsImage'),large=$('avatarLargePreview'),largeImg=$('avatarLargeImage');if(state.avatar){img.src=state.avatar;button.classList.add('has-photo');previewImg.src=state.avatar;preview.classList.add('has-photo');largeImg.src=state.avatar;large.classList.add('has-photo')}else{img.removeAttribute('src');button.classList.remove('has-photo');previewImg.removeAttribute('src');preview.classList.remove('has-photo');largeImg.removeAttribute('src');large.classList.remove('has-photo')}const initial=(state.displayName||'M').trim().charAt(0).toLocaleUpperCase('pt-BR')||'M';document.querySelector('.avatar-initial').textContent=initial;$('settingsAvatarInitial').textContent=initial;$('avatarLargeInitial').textContent=initial}
   function renderMotivation(){const text=String(state.motivation||'').trim();$('motivationText').textContent=text||'Defina uma mensagem que fortaleça sua missão.';$('motivationCredit').textContent=String(state.motivationCredit||'').trim();$('motivationCredit').hidden=!String(state.motivationCredit||'').trim()}
@@ -665,11 +791,23 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
   $('avatarButton').addEventListener('click',()=>{$('avatarPreviewDialog').showModal()});
   $('closeAvatarPreviewBtn').addEventListener('click',()=>$('avatarPreviewDialog').close());
   $('closeAvatarPreviewAction').addEventListener('click',()=>$('avatarPreviewDialog').close());
+  $('adjustAvatarPreviewBtn').addEventListener('click',()=>{$('avatarPreviewDialog').close();openCurrentAvatarCropper()});
+  $('adjustAvatarBtn').addEventListener('click',openCurrentAvatarCropper);
   $('avatarInput').addEventListener('change',event=>{
-    const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Selecione um arquivo de imagem.');return}
-    const reader=new FileReader();reader.onload=()=>{const source=new Image();source.onload=()=>{const size=320;const scale=Math.min(1,size/Math.max(source.width,source.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(source.width*scale));canvas.height=Math.max(1,Math.round(source.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(source,0,0,canvas.width,canvas.height);state.avatar=canvas.toDataURL('image/jpeg',.82);saveState();applyAvatar();showToast('Foto de perfil atualizada.')};source.onerror=()=>showToast('Não foi possível abrir essa imagem.');source.src=reader.result};reader.onerror=()=>showToast('Falha ao carregar a imagem.');reader.readAsDataURL(file);event.target.value='';
+    const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Selecione um arquivo de imagem.');event.target.value='';return}
+    const reader=new FileReader();reader.onload=()=>prepareAvatarSource(reader.result);reader.onerror=()=>showToast('Falha ao carregar a imagem.');reader.readAsDataURL(file);event.target.value='';
   });
-  $('removePhotoBtn').addEventListener('click',()=>{state.avatar='';saveState();applyAvatar();document.querySelector('.utility').open=false;showToast('Foto de perfil removida.')});
+  $('closeAvatarCropBtn').addEventListener('click',()=>$('avatarCropDialog').close());
+  $('cancelAvatarCropBtn').addEventListener('click',()=>$('avatarCropDialog').close());
+  $('saveAvatarCropBtn').addEventListener('click',saveAvatarCrop);
+  $('resetAvatarCropBtn').addEventListener('click',()=>{cropZoom=1;cropPanX=0;cropPanY=0;renderCropPreview()});
+  $('avatarZoomRange').addEventListener('input',()=>{cropZoom=Number($('avatarZoomRange').value)||1;renderCropPreview()});
+  $('avatarCropStage').addEventListener('pointerdown',event=>{if(!cropSourceImage)return;cropPointer={id:event.pointerId,x:event.clientX,y:event.clientY,panX:cropPanX,panY:cropPanY};$('avatarCropStage').classList.add('is-dragging');$('avatarCropStage').setPointerCapture(event.pointerId)});
+  $('avatarCropStage').addEventListener('pointermove',event=>{if(!cropPointer||cropPointer.id!==event.pointerId)return;const rect=$('avatarCropStage').getBoundingClientRect();cropPanX=cropPointer.panX+(event.clientX-cropPointer.x)/rect.width;cropPanY=cropPointer.panY+(event.clientY-cropPointer.y)/rect.height;renderCropPreview()});
+  const finishCropDrag=event=>{if(cropPointer&&(!event||cropPointer.id===event.pointerId)){cropPointer=null;$('avatarCropStage').classList.remove('is-dragging')}};
+  $('avatarCropStage').addEventListener('pointerup',finishCropDrag);$('avatarCropStage').addEventListener('pointercancel',finishCropDrag);$('avatarCropStage').addEventListener('lostpointercapture',finishCropDrag);
+  $('avatarCropStage').addEventListener('keydown',event=>{const step=event.shiftKey ? 0.05 : 0.015;let handled=true;if(event.key==='ArrowLeft')cropPanX-=step;else if(event.key==='ArrowRight')cropPanX+=step;else if(event.key==='ArrowUp')cropPanY-=step;else if(event.key==='ArrowDown')cropPanY+=step;else handled=false;if(handled){event.preventDefault();renderCropPreview()}});
+  $('removePhotoBtn').addEventListener('click',()=>{state.avatar='';state.avatarOriginal='';state.avatarZoom=1;state.avatarPanX=0;state.avatarPanY=0;saveState();applyAvatar();document.querySelector('.utility').open=false;showToast('Foto de perfil removida.')});
   $('openSettingsBtn').addEventListener('click',openSettings);$('closeSettingsBtn').addEventListener('click',()=>$('settingsDialog').close());$('cancelSettingsBtn').addEventListener('click',()=>$('settingsDialog').close());$('settingsForm').addEventListener('submit',saveSettings);$('chooseAvatarBtn').addEventListener('click',()=>$('avatarInput').click());
   $('settingsEditScheduleBtn').addEventListener('click',()=>{$('settingsDialog').close();openScheduleEditor()});$('settingsEditDateBtn').addEventListener('click',()=>{$('settingsDialog').close();$('examDateInput').value=state.examDate;$('examTimeInput').value=state.examTime||'08:00';$('dateDialog').showModal()});
   $('notificationOptIn').addEventListener('change',async()=>{const checkbox=$('notificationOptIn');if(!checkbox.checked){state.notificationsEnabled=false;saveState();updateNotificationStatus();showToast('Notificações desativadas.');return}if(!('Notification' in window)){checkbox.checked=false;showToast('Notificações não são compatíveis com este navegador.');return}let permission=Notification.permission;if(permission!=='granted'&&permission!=='denied'){try{permission=await Notification.requestPermission()}catch(e){permission='denied'}}if(permission==='granted'){state.notificationsEnabled=true;saveState();showToast('Permissão de notificações concedida.')}else{state.notificationsEnabled=false;checkbox.checked=false;showToast('Permissão de notificações não concedida.')}updateNotificationStatus()});
@@ -683,7 +821,7 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
   $('themeToggle').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';saveState();applyTheme()});
   $('resetBtn').addEventListener('click',()=>{if(confirm('Zerar as sessões concluídas de hoje?')){const day=currentDay(),record=syncCurrentStudyLog(day,sessionsFor(day));record.sessions.forEach(session=>{session.done=false});Object.keys(state.done).forEach(k=>{if(k.startsWith(day.id+'-'))delete state.done[k]});saveState();renderToday();document.querySelector('.utility').open=false;showToast('Progresso de hoje zerado.')}});
   $('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'MISSÃO EsPCEx',version:5,exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='backup-missao-espcex.json';a.click();URL.revokeObjectURL(url);document.querySelector('.utility').open=false;showToast('Backup exportado.')});
-  $('importInput').addEventListener('change',async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data.state||typeof data.state.done!=='object')throw new Error('Formato inválido');state={...emptyState(),...state,...data.state,done:data.state.done,cycle:data.state.cycle==='B'?'B':'A',customSchedules:data.state.customSchedules&&typeof data.state.customSchedules==='object'?data.state.customSchedules:{},theme:data.state.theme==='light'?'light':'dark',displayName:typeof data.state.displayName==='string'?data.state.displayName:'Miguel',motivation:typeof data.state.motivation==='string'?data.state.motivation:emptyState().motivation,motivationCredit:typeof data.state.motivationCredit==='string'?data.state.motivationCredit:'',displayDensity:data.state.displayDensity==='compact'?'compact':'comfortable',studyLog:data.state.studyLog&&typeof data.state.studyLog==='object'?data.state.studyLog:{},mockResults:Array.isArray(data.state.mockResults)?data.state.mockResults:[],notificationsEnabled:data.state.notificationsEnabled===true};saveState();applyAvatar();applyTheme();applyDisplayDensity();applyProfileSettings();updateNotificationStatus();updateCountdown();renderToday();showToast('Backup importado.')}catch(e){showToast('Arquivo de backup inválido.')}event.target.value='';document.querySelector('.utility').open=false});
+  $('importInput').addEventListener('change',async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data.state||typeof data.state.done!=='object')throw new Error('Formato inválido');state={...emptyState(),...state,...data.state,done:data.state.done,cycle:data.state.cycle==='B'?'B':'A',customSchedules:data.state.customSchedules&&typeof data.state.customSchedules==='object'?data.state.customSchedules:{},theme:data.state.theme==='light'?'light':'dark',displayName:typeof data.state.displayName==='string'?data.state.displayName:'Miguel',motivation:typeof data.state.motivation==='string'?data.state.motivation:emptyState().motivation,motivationCredit:typeof data.state.motivationCredit==='string'?data.state.motivationCredit:'',displayDensity:data.state.displayDensity==='compact'?'compact':'comfortable',studyLog:data.state.studyLog&&typeof data.state.studyLog==='object'?data.state.studyLog:{},mockResults:Array.isArray(data.state.mockResults)?data.state.mockResults:[],notificationsEnabled:data.state.notificationsEnabled===true,avatarOriginal:typeof data.state.avatarOriginal==='string'?data.state.avatarOriginal:'',avatarZoom:Number.isFinite(Number(data.state.avatarZoom))?Math.min(3,Math.max(1,Number(data.state.avatarZoom))):1,avatarPanX:Number.isFinite(Number(data.state.avatarPanX))?Number(data.state.avatarPanX):0,avatarPanY:Number.isFinite(Number(data.state.avatarPanY))?Number(data.state.avatarPanY):0};saveState();applyAvatar();applyTheme();applyDisplayDensity();applyProfileSettings();updateNotificationStatus();updateCountdown();renderToday();showToast('Backup importado.')}catch(e){showToast('Arquivo de backup inválido.')}event.target.value='';document.querySelector('.utility').open=false});
   $('downloadSourceBtn').addEventListener('click',()=>{const source='<!DOCTYPE html>\n'+document.documentElement.outerHTML;const blob=new Blob([source],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Missao_EsPCEx_editavel.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1200);document.querySelector('.utility').open=false;showToast('Cópia editável do aplicativo baixada.')});
   let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('installButton').hidden=false});
   $('installButton').addEventListener('click',async()=>{if(!deferredInstall){showToast('Use o instalador para Windows incluído no pacote do aplicativo.');return}deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('installButton').hidden=true});

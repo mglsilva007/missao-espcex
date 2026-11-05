@@ -1,4 +1,4 @@
-const CACHE_NAME = 'missao-espcex-v5-icons';
+const CACHE_NAME = 'missao-espcex-v6-profile-crop-date';
 const APP_SHELL = [
   './',
   './index.html',
