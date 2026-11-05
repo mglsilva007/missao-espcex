@@ -1,4 +1,4 @@
-const CACHE_NAME = 'missao-espcex-v6-profile-crop-date';
+const CACHE_NAME = 'missao-espcex-v7-date-layout';
 const APP_SHELL = [
   './',
   './index.html',

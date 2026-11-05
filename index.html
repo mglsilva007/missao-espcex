@@ -306,6 +306,103 @@ body.splash-open .shell,body.splash-open .toast{visibility:hidden}
   .avatar-crop-dialog{padding:15px}
 }
 
+
+
+/* Data da prova: composição em grade para evitar colisões em cards estreitos */
+.count-bottom{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  align-items:stretch;
+  gap:9px;
+  min-width:0;
+}
+.exam-date-block{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  grid-template-rows:auto auto;
+  grid-template-areas:"day month time" "day year time";
+  align-items:center;
+  column-gap:10px;
+  row-gap:3px;
+  width:100%;
+  min-width:0;
+}
+.exam-date-calendar{display:contents}
+.exam-date-calendar strong{
+  grid-area:day;
+  align-self:center;
+  font-size:40px;
+  line-height:.94;
+  letter-spacing:-.055em;
+  white-space:nowrap;
+}
+.exam-date-calendar span{
+  grid-area:month;
+  display:block;
+  max-width:none;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:9px;
+  line-height:1.2;
+  letter-spacing:.14em;
+  white-space:nowrap;
+}
+.exam-date-year{
+  grid-area:year;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:5px;
+  min-width:0;
+}
+.exam-date-year small{font-size:6px;letter-spacing:.12em}
+.exam-date-year strong{font-size:12px;letter-spacing:.07em;white-space:nowrap}
+.exam-date-divider{display:none}
+.exam-date-time{
+  grid-area:time;
+  min-width:0;
+  align-self:stretch;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:4px;
+  border-left:1px solid rgba(198,164,95,.32);
+  padding-left:12px;
+}
+.exam-date-time small{font-size:7px;letter-spacing:.15em}
+.exam-date-time strong{font-size:19px;line-height:1.05;letter-spacing:.045em;white-space:nowrap}
+.count-bottom .quiet-btn{
+  justify-self:end;
+  align-self:center;
+  margin:0;
+  padding:4px 0;
+  white-space:nowrap;
+}
+@media(max-width:480px){
+  .count-bottom{align-items:stretch;gap:8px}
+  .exam-date-block{grid-template-columns:38px minmax(0,1fr) auto;column-gap:8px;row-gap:3px}
+  .exam-date-calendar strong{font-size:37px}
+  .exam-date-calendar span{font-size:8px;letter-spacing:.12em}
+  .exam-date-year small{font-size:6px}
+  .exam-date-year strong{font-size:11px}
+  .exam-date-time{padding-left:9px}
+  .exam-date-time small{font-size:6px}
+  .exam-date-time strong{font-size:16px}
+  .count-bottom .quiet-btn{justify-self:end;align-self:center}
+}
+@media(max-width:340px){
+  .countdown{padding:13px 13px}
+  .exam-date-block{grid-template-columns:34px minmax(0,1fr) auto;column-gap:7px}
+  .exam-date-calendar strong{font-size:34px}
+  .exam-date-calendar span{font-size:7px;letter-spacing:.1em}
+  .exam-date-year{gap:4px}
+  .exam-date-year small{font-size:5px}
+  .exam-date-year strong{font-size:10px}
+  .exam-date-time{padding-left:7px}
+  .exam-date-time strong{font-size:15px}
+}
+
 </style>
 </head>
 <body>
