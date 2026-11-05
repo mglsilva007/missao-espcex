@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b0f15" id="themeColorMeta">
+<meta name="theme-color" content="#0b1420" id="themeColorMeta">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-512.png" type="image/png">
-<link rel="apple-touch-icon" href="icons/icon-512.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <meta name="description" content="Painel pessoal de preparação para a EsPCEx.">
 <title>MISSÃO EsPCEx</title>
 <style>
@@ -144,6 +146,122 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
 @media(max-width:760px){.top-tools{gap:6px}.top-status{display:none}.hero{grid-template-columns:1fr;gap:13px}.countdown{padding:15px 17px}.mission-foot{align-items:flex-start;flex-direction:column}.mission-actions{width:100%;justify-content:flex-start}.mission-head{align-items:center}.bottom{align-items:flex-start}.brand-emblem{width:19px;height:24px}}
 @media(max-width:430px){.shell{width:calc(100% - 24px);padding-top:16px}.avatar-button{width:43px;height:43px}.brand{gap:9px}.brand-name{font-size:14px}.brand-sub{font-size:8px}.tool-btn{padding:7px 8px;font-size:9px}.greeting h1{font-size:40px}.mission-head{padding:17px 15px 13px}.progress-wrap{padding:12px 15px 0}.session-list{padding:12px 15px 16px}.mission-foot{padding:0 15px 15px}.date-fields,.editor-selects{grid-template-columns:1fr 1fr}.edit-row{grid-template-columns:minmax(0,1fr) 78px 54px}.editor-head{grid-template-columns:minmax(0,1fr) 78px 54px}.count-number{font-size:43px}}
 
+
+/* Painel de desempenho e central de personalização */
+.performance-panel{margin-top:17px;padding:20px 21px 19px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel-gradient);box-shadow:var(--shadow)}
+.performance-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+.performance-head h2{font-size:22px;letter-spacing:-.045em;margin:4px 0 2px;font-weight:760}
+.performance-head p,.subpanel-head p{font-size:10px;color:var(--muted);margin:0}
+.result-open-btn{flex:none}
+.performance-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.performance-metric{min-width:0;padding:13px 13px 12px;border:1px solid rgba(198,164,95,.15);border-radius:12px;background:rgba(255,255,255,.018)}
+.performance-metric>span{display:block;color:var(--muted);font-size:8px;letter-spacing:.105em;font-weight:750;line-height:1.4;min-height:22px}
+.performance-metric strong{display:block;color:var(--gold-light);font-size:25px;letter-spacing:-.055em;line-height:1.15;margin:7px 0 4px;font-variant-numeric:tabular-nums}
+.performance-metric small{display:block;color:var(--muted);font-size:9px;line-height:1.35}
+.performance-disclaimer{font-size:8px;color:var(--muted);margin:9px 1px 0;line-height:1.4}
+.performance-lower{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.85fr);gap:10px;margin-top:10px}
+.chart-card,.results-card{min-width:0;border:1px solid rgba(195,201,204,.1);border-radius:13px;padding:14px;background:rgba(0,0,0,.09)}
+.subpanel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.subpanel-head h3{font-size:13px;margin:0 0 3px;letter-spacing:-.02em}
+.chart-key{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:8px;white-space:nowrap;padding-top:2px}
+.chart-key i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold-light);box-shadow:0 0 8px rgba(198,164,95,.45)}
+.chart-wrap{min-height:188px;margin-top:4px;overflow:hidden}
+.chart-wrap svg{display:block;width:100%;height:auto;min-height:188px;overflow:visible}
+.chart-footnote{font-size:9px;color:var(--muted);margin:2px 0 0}
+.history-count{font-size:8px;color:var(--gold-light);border:1px solid var(--line);padding:4px 6px;border-radius:6px;white-space:nowrap}
+.recent-results{display:grid;gap:7px;margin-top:12px;max-height:235px;overflow:auto;padding-right:2px}
+.empty-results{font-size:10px;line-height:1.5;color:var(--muted);padding:15px 4px;margin:0;text-align:center;border:1px dashed rgba(198,164,95,.18);border-radius:9px}
+.result-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 10px;border:1px solid rgba(195,201,204,.09);border-radius:9px;background:rgba(255,255,255,.018)}
+.result-row-main{min-width:0}.result-row-main strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}.result-row-main small{display:block;color:var(--muted);font-size:8px;margin-top:3px}
+.result-row-score{text-align:right;white-space:nowrap}.result-row-score strong{display:block;color:var(--gold-light);font-size:13px}.result-row-score small{display:block;color:var(--muted);font-size:8px}
+.result-delete{grid-column:1/-1;justify-self:end;border:0;background:transparent;color:var(--muted);font-size:8px;padding:1px 0}.result-delete:hover{color:var(--danger)}
+.settings-dialog{width:min(760px,calc(100% - 24px));max-height:90vh;overflow:auto;padding:22px}
+.settings-topline{margin-bottom:15px}.settings-topline .dialog-title{font-size:20px;margin-top:4px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.settings-section{min-width:0;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.018)}
+.settings-section-title{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+.settings-section-title h3{font-size:12px;margin:0 0 2px}.settings-section-title p{color:var(--muted);font-size:9px;margin:0}
+.settings-icon{flex:none;width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:rgba(198,164,95,.09);color:var(--gold-light);font-size:8px;font-weight:800}
+.profile-setting{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.settings-avatar{width:55px;height:55px;flex:none;border-radius:50%;overflow:hidden;display:grid;place-items:center;border:1px solid var(--line-strong);background:linear-gradient(145deg,#292922,#171e28);color:var(--gold-light);font-weight:800;font-size:19px}
+.settings-avatar img{width:100%;height:100%;object-fit:cover;display:none}.settings-avatar.has-photo img{display:block}.settings-avatar.has-photo span{display:none}
+.profile-setting-actions{display:grid;gap:2px}.profile-setting-actions strong,.settings-action-row strong{font-size:10px}.profile-setting-actions span,.settings-action-row span{font-size:8px;line-height:1.4;color:var(--muted)}
+.subtle-action{justify-self:start;margin-top:5px;border:1px solid var(--line-strong);border-radius:7px;padding:6px 9px;background:rgba(198,164,95,.06);color:var(--gold-light);font-size:9px;font-weight:750}.subtle-action:hover{background:rgba(198,164,95,.13)}
+.setting-label{display:block;margin:10px 0 5px;color:var(--muted);font-size:9px;font-weight:700}.setting-label span{font-weight:400}
+.setting-input{display:block;width:100%;min-width:0;border:1px solid var(--line-strong);border-radius:8px;background:#0c131c;color:var(--text);padding:9px 10px;font:inherit;font-size:11px;outline:none}
+.setting-input:focus{border-color:var(--gold-light);box-shadow:0 0 0 2px rgba(198,164,95,.1)}
+.motivation-input{resize:vertical;min-height:75px;line-height:1.45}
+.notification-setting{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px;border:1px solid rgba(195,201,204,.1);border-radius:9px;background:rgba(255,255,255,.015);cursor:pointer}
+.notification-setting>span{display:grid;gap:3px}.notification-setting strong{font-size:10px}.notification-setting small{color:var(--muted);font-size:8px;line-height:1.4}
+.notification-setting input{width:16px;height:16px;accent-color:var(--gold);flex:none}
+.settings-note{font-size:8px;line-height:1.5;color:var(--muted);margin:8px 0 0}
+.settings-wide{grid-column:1/-1}
+.settings-action-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(195,201,204,.08)}
+.settings-action-row:first-of-type{border-top:0}.settings-action-row>div{display:grid;gap:2px}.settings-action-row .subtle-action{flex:none;margin:0}
+.settings-actions{margin-top:14px}
+.result-dialog{width:min(480px,calc(100% - 24px));max-height:90vh;overflow:auto}
+.result-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.result-field{display:grid;gap:6px;color:var(--muted);font-size:9px;font-weight:700}.result-field-full{grid-column:1/-1}
+[data-density="compact"] .session{min-height:46px;padding-top:7px;padding-bottom:7px}
+[data-density="compact"] .session-list{gap:6px;padding-top:10px;padding-bottom:13px}
+[data-density="compact"] .performance-panel{padding:16px}
+[data-density="compact"] .performance-metric{padding:10px}
+[data-theme="light"] .performance-panel{background:var(--panel-gradient)}
+[data-theme="light"] .performance-metric,[data-theme="light"] .chart-card,[data-theme="light"] .results-card,[data-theme="light"] .settings-section,[data-theme="light"] .result-row{background:rgba(126,99,49,.025);border-color:rgba(128,96,43,.13)}
+[data-theme="light"] .result-row-main strong,[data-theme="light"] .settings-section-title h3,[data-theme="light"] .profile-setting-actions strong,[data-theme="light"] .settings-action-row strong,[data-theme="light"] .notification-setting strong{color:#292820}
+[data-theme="light"] .setting-input{background:#fffefa;color:#292820;color-scheme:light}
+[data-theme="light"] .settings-avatar{background:linear-gradient(145deg,#fffefa,#e8dfcb)}
+[data-theme="light"] .notification-setting{background:rgba(126,99,49,.025);border-color:rgba(128,96,43,.13)}
+[data-theme="light"] .settings-icon{background:rgba(153,118,47,.1)}
+[data-theme="light"] .empty-results{border-color:rgba(128,96,43,.22)}
+@media(max-width:760px){.performance-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.performance-lower{grid-template-columns:1fr}.settings-dialog{padding:17px}.settings-grid{grid-template-columns:1fr}.settings-wide{grid-column:auto}.settings-action-row{padding:10px 0}}
+@media(max-width:480px){.performance-panel{padding:15px 13px}.performance-head{align-items:flex-start;flex-direction:column}.performance-head h2{font-size:20px}.performance-head .tool-btn{align-self:stretch}.performance-metric strong{font-size:22px}.performance-metric{padding:11px 10px}.settings-dialog{padding:15px}.settings-topline .dialog-title{font-size:18px}.result-fields{grid-template-columns:1fr}.result-field-full{grid-column:auto}.result-dialog{padding:17px}.chart-wrap,.chart-wrap svg{min-height:165px}}
+
+
+/* Melhorias 1–10: abertura, perfil, contagem e edição da rotina */
+.countdown{padding:15px 17px;background:linear-gradient(145deg,rgba(27,31,34,.88),rgba(15,21,29,.96))}
+.countdown:after{display:none}
+.countdown-head{margin-bottom:2px}
+.count-number{margin:8px 0 0;font-size:43px}
+.clock-row{margin:0 0 3px;gap:9px}
+.clock-unit{min-width:40px}
+.clock-unit b{font-size:19px}
+.count-bottom{margin-top:9px;padding-top:9px}
+.estimate,.count-caption{display:none!important}
+.editor-selects-single{grid-template-columns:minmax(0,260px)}
+.edit-row select,.edit-row input{width:100%;min-width:0;padding:10px 9px;border:1px solid var(--line);border-radius:8px;background:#0c131c;color:var(--text);font-size:12px}
+.edit-row .subject-choice{display:grid;gap:6px;min-width:0}
+.edit-row .custom-subject-input[hidden]{display:none}
+.schedule-load-summary{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-top:12px;padding:11px 12px;border:1px solid rgba(198,164,95,.2);border-radius:10px;background:rgba(198,164,95,.045)}
+.schedule-load-summary>span{font-size:8px;letter-spacing:.13em;color:var(--muted);font-weight:750}
+.schedule-load-summary strong{font-size:19px;color:var(--gold-light);font-variant-numeric:tabular-nums}
+.schedule-load-summary small{grid-column:1/-1;color:var(--muted);font-size:8px}
+.avatar-preview-dialog{width:min(440px,calc(100% - 24px));padding:20px}
+.avatar-preview-content{display:block}
+.avatar-large{width:min(280px,72vw);height:min(280px,72vw);margin:18px auto 8px;border-radius:50%;overflow:hidden;display:grid;place-items:center;border:2px solid var(--line-strong);background:radial-gradient(circle at 30% 25%,rgba(198,164,95,.2),transparent 60%),#151e28;color:var(--gold-light);font-size:76px;font-weight:800;box-shadow:0 0 0 8px rgba(198,164,95,.045),0 24px 55px rgba(0,0,0,.25)}
+.avatar-large img{display:none;width:100%;height:100%;object-fit:cover}
+.avatar-large.has-photo img{display:block}.avatar-large.has-photo span{display:none}
+.welcome-splash{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:22px;background:radial-gradient(800px 500px at 50% 35%,rgba(198,164,95,.14),transparent 65%),linear-gradient(145deg,#070b11,#111a25 55%,#080c12);opacity:1;visibility:visible;transition:opacity .45s ease,visibility .45s ease}
+.welcome-splash[hidden]{display:none!important}
+body.splash-open{overflow:hidden;height:100vh}
+body.splash-open .shell,body.splash-open .toast{visibility:hidden}
+.welcome-splash.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.welcome-card{width:min(490px,100%);text-align:center;position:relative;padding:34px 26px 26px;border:1px solid rgba(198,164,95,.28);border-radius:25px;background:linear-gradient(155deg,rgba(25,33,43,.94),rgba(10,16,24,.97));box-shadow:0 35px 100px rgba(0,0,0,.45);overflow:hidden}
+.welcome-card:before{content:"";position:absolute;inset:10px;border:1px solid rgba(198,164,95,.1);border-radius:18px;pointer-events:none}
+.welcome-emblem-wrap{width:68px;height:68px;margin:0 auto 12px;border-radius:18px;display:grid;place-items:center;background:rgba(198,164,95,.09);border:1px solid rgba(198,164,95,.22);box-shadow:0 0 35px rgba(198,164,95,.09)}
+.welcome-emblem-wrap img{width:48px;height:48px;object-fit:contain}
+.welcome-brand{font-size:14px;letter-spacing:.17em;font-weight:850;color:#f3eee3}.welcome-brand span{color:var(--gold-light)}
+.welcome-kicker{margin-top:33px;color:var(--gold);font-size:9px;letter-spacing:.23em;font-weight:800}
+.welcome-card h1{margin:12px 0 8px;font-size:clamp(36px,8vw,56px);line-height:.98;letter-spacing:-.065em;color:#f3eee3;font-weight:850}
+.welcome-card h1 span{color:var(--gold-light)}
+.welcome-card p{margin:0;color:#aeb4b8;font-size:12px;letter-spacing:.04em}
+.welcome-enter{display:flex;align-items:center;justify-content:center;gap:16px;width:min(280px,100%);margin:32px auto 0;padding:13px 18px;border:1px solid #ddc486;border-radius:10px;background:linear-gradient(110deg,#b58e45,#e1c98e);color:#17140e;font-size:10px;letter-spacing:.12em;font-weight:900;box-shadow:0 9px 26px rgba(198,164,95,.18);transition:transform .18s,filter .18s}
+.welcome-enter:hover{transform:translateY(-2px);filter:brightness(1.06)}.welcome-enter span{font-size:17px;line-height:10px}
+.welcome-foot{margin-top:25px;color:#747d83;font-size:8px;letter-spacing:.2em}.welcome-foot i{color:var(--gold);font-style:normal;padding:0 5px}
+@media(max-width:480px){.welcome-card{padding:29px 18px 22px}.welcome-kicker{margin-top:26px}.welcome-enter{margin-top:27px}.avatar-preview-dialog{padding:17px}.edit-row{grid-template-columns:minmax(0,1fr) 78px 54px}.edit-row select,.edit-row input{font-size:11px;padding:9px 7px}}
+@media(prefers-reduced-motion:reduce){.welcome-splash,.welcome-enter{transition:none}}
+[data-theme="light"] .edit-row select,[data-theme="light"] .edit-row input{background:#fffefa;color:#292820;color-scheme:light}
+[data-theme="light"] .avatar-large{background:radial-gradient(circle at 30% 25%,rgba(198,164,95,.2),transparent 60%),#eee8da}
+
 </style>
 </head>
 <body>
@@ -151,33 +269,32 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
   <header class="topbar">
     <div class="brand">
       <div class="avatar-wrap">
-        <button class="avatar-button" id="avatarButton" type="button" title="Adicionar ou alterar foto de perfil" aria-label="Adicionar ou alterar foto de perfil"><span class="avatar-initial">M</span><img id="avatarImage" alt="Foto de perfil"></button>
+        <button class="avatar-button" id="avatarButton" type="button" title="Ampliar foto de perfil" aria-label="Ampliar foto de perfil"><span class="avatar-initial">M</span><img id="avatarImage" alt="Foto de perfil"></button>
         <input id="avatarInput" type="file" accept="image/*">
       </div>
-      <div class="brand-copy"><div class="brand-name-row"><img class="brand-emblem" src="icons/icon-512.png" alt="Emblema estilizado da EsPCEx"><div class="brand-name">MISSÃO EsPCEx</div></div><div class="brand-sub">Central de preparação</div></div>
+      <div class="brand-copy"><div class="brand-name-row"><img class="brand-emblem" src="icons/emblem.svg" alt="Emblema estilizado da EsPCEx"><div class="brand-name">MISSÃO EsPCEx</div></div><div class="brand-sub">Central de preparação</div></div>
     </div>
     <div class="top-tools">
+      <button class="tool-btn settings-open-btn" id="openSettingsBtn" type="button">Personalizar</button>
       <button class="tool-btn" id="themeToggle" type="button" aria-label="Alternar tema">Modo claro</button>
       <button class="tool-btn install-btn" id="installButton" type="button" hidden>Instalar aplicativo</button>
-      <div class="top-status"><span class="status-dot"></span> Plano ativo</div>
     </div>
   </header>
 
   <section class="hero">
     <div class="greeting">
       <div class="eyebrow">Bem-vindo de volta, guerreiro.</div>
-      <h1><span>Miguel</span></h1>
+      <h1><span id="displayName">Miguel</span></h1>
       <p>Um dia de cada vez. Uma missão de cada vez.</p>
     </div>
     <aside class="countdown" aria-live="polite">
-      <div class="countdown-head"><span class="countdown-label">Contagem regressiva para a prova</span><span class="estimate">ESTIMATIVA AJUSTÁVEL</span></div>
+      <div class="countdown-head"><span class="countdown-label">Contagem regressiva para a prova</span></div>
       <div class="count-number" id="countNumber">—<small>DIAS</small></div>
       <div class="clock-row" aria-label="Tempo restante em horas, minutos e segundos">
         <div class="clock-unit"><b id="countHours">00</b><small>HORAS</small></div><span class="clock-separator">:</span>
         <div class="clock-unit"><b id="countMinutes">00</b><small>MINUTOS</small></div><span class="clock-separator">:</span>
         <div class="clock-unit"><b id="countSeconds">00</b><small>SEGUNDOS</small></div>
       </div>
-      <div class="count-caption" id="countCaption">tempo restante até o horário previsto da prova</div>
       <div class="count-bottom"><span class="count-date" id="countDate">11 de setembro de 2027 · 08:00</span><button class="quiet-btn" id="editDateBtn" type="button">Ajustar data e hora</button></div>
     </aside>
   </section>
@@ -189,13 +306,62 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
     </div>
     <div class="progress-wrap"><div class="progress-meta"><span id="progressText">0 de 0 sessões concluídas</span><span id="progressPct">0%</span></div><div class="progress-track"><span id="todayProgress"></span></div></div>
     <div class="session-list" id="sessionList"></div>
-    <div class="mission-foot"><span id="completionText">O progresso de hoje é salvo automaticamente.</span><div class="mission-actions"><div class="weekend-mode" id="weekendMode" hidden><button id="cycleA" type="button" aria-pressed="true">Simulado completo</button><button id="cycleB" type="button" aria-pressed="false">Consolidação</button></div><button class="edit-btn" id="editScheduleBtn" type="button">Editar matérias</button><button class="complete-btn" id="completeDayBtn" type="button">Concluir sessões</button></div></div>
+    <div class="mission-foot"><span id="completionText">O progresso de hoje é salvo automaticamente.</span><div class="mission-actions"><button class="edit-btn" id="editScheduleBtn" type="button">Editar matérias</button><button class="complete-btn" id="completeDayBtn" type="button">Concluir sessões</button></div></div>
   </main>
 
-  <section class="verse" aria-label="Versículo bíblico"><p>“Em todo trabalho há proveito, mas a mera conversa conduz à pobreza.”</p><small>Provérbios 14:23</small></section>
+  <section class="performance-panel" id="performancePanel" aria-labelledby="performanceTitle">
+    <div class="performance-head">
+      <div>
+        <div class="eyebrow">Acompanhamento de resultados</div>
+        <h2 id="performanceTitle">Painel de desempenho</h2>
+        <p>Transforme constância e simulados em evolução mensurável.</p>
+      </div>
+      <button class="tool-btn result-open-btn" id="openResultBtn" type="button">＋ Registrar simulado</button>
+    </div>
+    <div class="performance-metrics" aria-live="polite">
+      <article class="performance-metric"><span>HORAS ESTUDADAS · SEMANA</span><strong id="weeklyHours">0h</strong><small id="weeklyHoursNote">Tempo concluído nesta semana</small></article>
+      <article class="performance-metric"><span>CUMPRIMENTO DO PLANO</span><strong id="weeklyCompliance">0%</strong><small id="weeklyComplianceNote">Sessões concluídas na semana</small></article>
+      <article class="performance-metric"><span>SIMULADOS REGISTRADOS</span><strong id="mockCount">0</strong><small>Resultados adicionados ao histórico</small></article>
+      <article class="performance-metric"><span>MÉDIA DE DESEMPENHO</span><strong id="averageScore">—</strong><small>Percentual médio dos resultados</small></article>
+    </div>
+    <p class="performance-disclaimer">As horas são estimadas pela duração das sessões marcadas como concluídas. O histórico começa a ser contabilizado nesta versão do aplicativo.</p>
+    <div class="performance-lower">
+      <section class="chart-card" aria-labelledby="chartTitle">
+        <div class="subpanel-head"><div><h3 id="chartTitle">Evolução mensal</h3><p>Média dos resultados dos simulados · últimos 6 meses</p></div><span class="chart-key"><i></i> Desempenho</span></div>
+        <div class="chart-wrap" id="performanceChart" role="img" aria-label="Gráfico de evolução mensal dos resultados dos simulados"></div>
+        <p class="chart-footnote" id="chartFootnote">Registre os resultados dos seus simulados para visualizar sua evolução.</p>
+      </section>
+      <section class="results-card" aria-labelledby="recentResultsTitle">
+        <div class="subpanel-head"><div><h3 id="recentResultsTitle">Resultados recentes</h3><p>Seu histórico de simulados</p></div><span class="history-count" id="historyCount">0 registros</span></div>
+        <div class="recent-results" id="recentResults" aria-live="polite"><p class="empty-results">Nenhum resultado registrado ainda.</p></div>
+      </section>
+    </div>
+  </section>
+
+  <section class="verse" aria-label="Mensagem motivacional"><p id="motivationText">“Em todo trabalho há proveito, mas a mera conversa conduz à pobreza.”</p><small id="motivationCredit">Provérbios 14:23</small></section>
 
   <footer class="bottom"><span><strong>MISSÃO EsPCEx</strong> · foco, constância e propósito</span><details class="utility"><summary>Configurações e controle</summary><div class="utility-pop"><button id="exportBtn" type="button">Exportar backup</button><label>Importar backup<input id="importInput" type="file" accept="application/json"></label><button id="downloadSourceBtn" type="button">Baixar código editável</button><button id="resetBtn" type="button">Zerar progresso de hoje</button><button id="removePhotoBtn" type="button">Remover foto de perfil</button></div></details></footer>
 </div>
+<div class="welcome-splash" id="welcomeSplash" role="dialog" aria-modal="true" aria-labelledby="welcomeSplashTitle">
+  <div class="welcome-card">
+    <div class="welcome-emblem-wrap"><img src="icons/emblem.svg" alt="Emblema do Missão EsPCEx"></div>
+    <div class="welcome-brand">MISSÃO <span>EsPCEx</span></div>
+    <div class="welcome-kicker">SUA JORNADA COMEÇA AGORA</div>
+    <h1 id="welcomeSplashTitle">BEM-VINDO,<br><span>GUERREIRO.</span></h1>
+    <p>Disciplina hoje. Conquista amanhã.</p>
+    <button class="welcome-enter" id="enterMissionBtn" type="button">ENTRAR NA MISSÃO <span aria-hidden="true">→</span></button>
+    <div class="welcome-foot">FOCO <i>·</i> CONSTÂNCIA <i>·</i> PROPÓSITO</div>
+  </div>
+</div>
+
+<dialog id="avatarPreviewDialog" class="avatar-preview-dialog">
+  <div class="avatar-preview-content">
+    <div class="dialog-topline"><div><h2 class="dialog-title">Foto de perfil</h2><p class="dialog-copy">Visualização ampliada do seu perfil.</p></div><button type="button" class="dialog-x" id="closeAvatarPreviewBtn" aria-label="Fechar">×</button></div>
+    <div class="avatar-large" id="avatarLargePreview"><span id="avatarLargeInitial">M</span><img id="avatarLargeImage" alt="Foto de perfil ampliada"></div>
+    <div class="dialog-actions"><button type="button" id="closeAvatarPreviewAction">Fechar</button></div>
+  </div>
+</dialog>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <dialog id="dateDialog">
@@ -211,19 +377,81 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
 <dialog id="scheduleDialog" class="schedule-dialog">
   <form method="dialog" id="scheduleForm">
     <div class="dialog-topline"><div><h2 class="dialog-title">Editar rotina de estudos</h2><p class="dialog-copy">Personalize as matérias e o tempo reservado para cada uma. As alterações ficam salvas neste dispositivo.</p></div><button type="button" class="dialog-x" id="closeScheduleBtn" aria-label="Fechar">×</button></div>
-    <div class="editor-selects"><label>Dia da semana<select id="scheduleDaySelect"><option value="mon">Segunda-feira</option><option value="tue">Terça-feira</option><option value="wed">Quarta-feira</option><option value="thu">Quinta-feira</option><option value="fri">Sexta-feira</option><option value="sat">Sábado</option><option value="sun">Domingo</option></select></label><label id="scheduleCycleWrap">Programação<select id="scheduleCycleSelect"><option value="A">Simulado completo</option><option value="B">Consolidação</option></select></label></div>
+    <div class="editor-selects editor-selects-single"><label>Dia da semana<select id="scheduleDaySelect"><option value="mon">Segunda-feira</option><option value="tue">Terça-feira</option><option value="wed">Quarta-feira</option><option value="thu">Quinta-feira</option><option value="fri">Sexta-feira</option><option value="sat">Sábado</option><option value="sun">Domingo</option></select></label></div>
     <div class="editor-head"><span>MATÉRIA / ATIVIDADE</span><span>TEMPO</span><span></span></div>
     <div id="scheduleRows" class="schedule-rows"></div>
+    <div class="schedule-load-summary"><span>CARGA TOTAL DO DIA</span><strong id="scheduleLoadTotal">0h</strong><small>O total é recalculado conforme os tempos das matérias.</small></div>
     <button class="add-row-btn" id="addScheduleRow" type="button">＋ Adicionar matéria</button>
     <div class="dialog-actions"><button type="button" id="cancelScheduleBtn">Cancelar</button><button class="save" type="submit">Salvar rotina</button></div>
+  </form>
+</dialog>
+
+<dialog id="settingsDialog" class="settings-dialog">
+  <form id="settingsForm">
+    <div class="dialog-topline settings-topline">
+      <div><div class="eyebrow">Seu espaço · suas preferências</div><h2 class="dialog-title">Central de personalização</h2><p class="dialog-copy">Ajuste sua identidade, sua experiência e as informações da rotina.</p></div>
+      <button type="button" class="dialog-x" id="closeSettingsBtn" aria-label="Fechar">×</button>
+    </div>
+    <div class="settings-grid">
+      <section class="settings-section">
+        <div class="settings-section-title"><span class="settings-icon">01</span><div><h3>Perfil do estudante</h3><p>Como você aparece no painel.</p></div></div>
+        <div class="profile-setting">
+          <div class="settings-avatar" id="settingsAvatarPreview"><span id="settingsAvatarInitial">M</span><img id="avatarSettingsImage" alt="Prévia da foto de perfil"></div>
+          <div class="profile-setting-actions"><strong>Foto de perfil</strong><span>Use uma imagem quadrada para um melhor enquadramento.</span><button type="button" class="subtle-action" id="chooseAvatarBtn">Escolher foto</button></div>
+        </div>
+        <label class="setting-label" for="settingsName">Nome exibido</label>
+        <input class="setting-input" id="settingsName" type="text" maxlength="32" autocomplete="name" placeholder="Seu nome" required>
+      </section>
+      <section class="settings-section">
+        <div class="settings-section-title"><span class="settings-icon">02</span><div><h3>Mensagem motivacional</h3><p>Uma frase para acompanhar sua missão.</p></div></div>
+        <label class="setting-label" for="motivationInput">Mensagem</label>
+        <textarea class="setting-input motivation-input" id="motivationInput" maxlength="220" rows="3" placeholder="Escreva sua mensagem motivacional"></textarea>
+        <label class="setting-label" for="motivationCreditInput">Autor ou referência <span>(opcional)</span></label>
+        <input class="setting-input" id="motivationCreditInput" type="text" maxlength="70" placeholder="Ex.: Provérbios 14:23">
+      </section>
+      <section class="settings-section">
+        <div class="settings-section-title"><span class="settings-icon">03</span><div><h3>Preferências de exibição</h3><p>Defina a aparência do aplicativo.</p></div></div>
+        <label class="setting-label" for="themeSetting">Tema</label>
+        <select class="setting-input" id="themeSetting"><option value="dark">Escuro · ouro</option><option value="light">Claro · discreto</option></select>
+        <label class="setting-label" for="densitySetting">Espaçamento do painel</label>
+        <select class="setting-input" id="densitySetting"><option value="comfortable">Confortável</option><option value="compact">Compacto</option></select>
+      </section>
+      <section class="settings-section">
+        <div class="settings-section-title"><span class="settings-icon">04</span><div><h3>Notificações</h3><p>Permissão do navegador para avisos do aplicativo.</p></div></div>
+        <label class="notification-setting" for="notificationOptIn"><span><strong>Permitir notificações</strong><small id="notificationStatus">A permissão será solicitada pelo navegador.</small></span><input id="notificationOptIn" type="checkbox"><i aria-hidden="true"></i></label>
+        <p class="settings-note">Os lembretes automáticos e seus horários não estão ativos nesta versão; essa etapa ficou reservada para uma atualização futura.</p>
+      </section>
+      <section class="settings-section settings-wide">
+        <div class="settings-section-title"><span class="settings-icon">05</span><div><h3>Rotina e prova</h3><p>Altere as informações principais do seu planejamento.</p></div></div>
+        <div class="settings-action-row"><div><strong>Rotina de estudos</strong><span>Edite matérias, atividades e duração por dia.</span></div><button type="button" class="subtle-action" id="settingsEditScheduleBtn">Editar rotina</button></div>
+        <div class="settings-action-row"><div><strong>Data e horário da prova</strong><span>Ajuste a referência usada na contagem regressiva.</span></div><button type="button" class="subtle-action" id="settingsEditDateBtn">Ajustar prova</button></div>
+      </section>
+    </div>
+    <div class="dialog-actions settings-actions"><button type="button" id="cancelSettingsBtn">Cancelar</button><button class="save" type="submit">Salvar personalizações</button></div>
+  </form>
+</dialog>
+
+<dialog id="resultDialog" class="result-dialog">
+  <form id="resultForm">
+    <div class="dialog-topline"><div><h2 class="dialog-title">Registrar simulado</h2><p class="dialog-copy">Informe sua pontuação para acompanhar a evolução ao longo dos meses.</p></div><button type="button" class="dialog-x" id="closeResultBtn" aria-label="Fechar">×</button></div>
+    <div class="result-fields">
+      <label class="result-field result-field-full">Nome do simulado<input class="setting-input" id="resultName" type="text" maxlength="60" value="Simulado EsPCEx" required></label>
+      <label class="result-field">Data<input class="setting-input" id="resultDate" type="date" required></label>
+      <label class="result-field">Pontuação obtida<input class="setting-input" id="resultScore" type="number" min="0" step="0.01" placeholder="Ex.: 72" required></label>
+      <label class="result-field">Pontuação máxima<input class="setting-input" id="resultMax" type="number" min="0.01" step="0.01" value="100" required></label>
+    </div>
+    <p class="settings-note">A evolução será calculada em percentual: pontuação obtida ÷ pontuação máxima. Assim, você pode registrar simulados com escalas diferentes.</p>
+    <div class="dialog-actions"><button type="button" id="cancelResultBtn">Cancelar</button><button class="save" type="submit">Salvar resultado</button></div>
   </form>
 </dialog>
 
 <script>
 (()=>{
   'use strict';
-  const STORAGE_KEY='missao-espcex-dashboard-v3';
-  const PREVIOUS_KEY='missao-espcex-dashboard-v2';
+  const STORAGE_KEY='missao-espcex-dashboard-v5';
+  const PREVIOUS_KEY='missao-espcex-dashboard-v4';
+  const PREVIOUS_2_KEY='missao-espcex-dashboard-v3';
+  const PREVIOUS_3_KEY='missao-espcex-dashboard-v2';
   const LEGACY_KEY='rota-espcx-progress-v1';
   const days=[
     {id:'mon',name:'Segunda-feira',sessions:[['Matemática','2h'],['Português','2h'],['Inglês','1h'],['História','1h'],['Química','1h']]},
@@ -237,20 +465,16 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
     [['Português + Física + Química','4h30'],['Redação','—'],['Tempo total','4h30']],
     [['Matemática + Geografia + História + Inglês','4h30'],['Pós-prova','—']]
   ];
-  const weekendB=[
-    [['Matemática e Física',''],['Português e Inglês',''],['Correção ativa','']],
-    [['Química, História e Geografia',''],['Redação',''],['Planejamento','']]
-  ];
   const $=id=>document.getElementById(id);
   const weekdayIds=['sun','mon','tue','wed','thu','fri','sat'];
-  const emptyState=()=>({done:{},cycle:'A',avatar:'',examDate:defaultExamDate(),examTime:'08:00',theme:'dark',customSchedules:{}});
+  const emptyState=()=>({done:{},cycle:'A',avatar:'',displayName:'Miguel',motivation:'“Em todo trabalho há proveito, mas a mera conversa conduz à pobreza.”',motivationCredit:'Provérbios 14:23',examDate:defaultExamDate(),examTime:'08:00',theme:'dark',displayDensity:'comfortable',customSchedules:{},trackingStartDate:'',studyLog:{},mockResults:[],notificationsEnabled:false});
   function isoDate(d){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
   function secondSaturdaySeptember(year){const first=new Date(year,8,1);const offset=(6-first.getDay()+7)%7;return new Date(year,8,1+offset+7)}
   function defaultExamDate(){const now=new Date();let d=secondSaturdaySeptember(now.getFullYear());if(d<=new Date(now.getFullYear(),now.getMonth(),now.getDate()))d=secondSaturdaySeptember(now.getFullYear()+1);return isoDate(d)}
   function loadState(){
     try{
-      const current=JSON.parse(localStorage.getItem(STORAGE_KEY)||localStorage.getItem(PREVIOUS_KEY)||localStorage.getItem(LEGACY_KEY)||'null');
-      if(current&&typeof current==='object')return {...emptyState(),...current,done:current.done&&typeof current.done==='object'?current.done:{},cycle:current.cycle==='B'?'B':'A',customSchedules:current.customSchedules&&typeof current.customSchedules==='object'?current.customSchedules:{},theme:current.theme==='light'?'light':'dark'};
+      const current=JSON.parse(localStorage.getItem(STORAGE_KEY)||localStorage.getItem(PREVIOUS_KEY)||localStorage.getItem(PREVIOUS_2_KEY)||localStorage.getItem(PREVIOUS_3_KEY)||localStorage.getItem(LEGACY_KEY)||'null');
+      if(current&&typeof current==='object')return {...emptyState(),...current,done:current.done&&typeof current.done==='object'?current.done:{},cycle:current.cycle==='B'?'B':'A',customSchedules:current.customSchedules&&typeof current.customSchedules==='object'?current.customSchedules:{},theme:current.theme==='light'?'light':'dark',displayName:typeof current.displayName==='string'?current.displayName:'Miguel',motivation:typeof current.motivation==='string'?current.motivation:emptyState().motivation,motivationCredit:typeof current.motivationCredit==='string'?current.motivationCredit:'Provérbios 14:23',displayDensity:current.displayDensity==='compact'?'compact':'comfortable',studyLog:current.studyLog&&typeof current.studyLog==='object'?current.studyLog:{},mockResults:Array.isArray(current.mockResults)?current.mockResults:[],notificationsEnabled:current.notificationsEnabled===true};
     }catch(e){}
     return emptyState();
   }
@@ -258,13 +482,34 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
   function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){showToast('Armazenamento cheio. Exporte um backup ou use uma foto menor.')}}
   function showToast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.classList.remove('show'),2500)}
   function currentDay(){return days.find(d=>d.id===weekdayIds[new Date().getDay()])}
-  function scheduleKey(day,cycle=state.cycle){return day.weekend?day.id+'-'+cycle:day.id}
-  function baseSessions(day,cycle=state.cycle){
+  function scheduleKey(day){return day.id}
+  function baseSessions(day){
     if(!day.weekend)return day.sessions.map(x=>({name:x[0],duration:x[1]}));
-    const group=cycle==='B'?weekendB:weekendA;
-    return group[day.id==='sat'?0:1].map(x=>({name:x[0],duration:x[1]||'—'}));
+    return weekendA[day.id==='sat'?0:1].map(x=>({name:x[0],duration:x[1]||'—'}));
   }
-  function sessionsFor(day){const custom=state.customSchedules[scheduleKey(day)];return Array.isArray(custom)?custom.map(x=>({name:String(x.name||''),duration:String(x.duration||'—')})):baseSessions(day)}
+  function customSessionsFor(day){
+    const direct=state.customSchedules[day.id];
+    if(Array.isArray(direct))return direct;
+    if(day.weekend){const legacyA=state.customSchedules[day.id+'-A'];const legacyB=state.customSchedules[day.id+'-B'];const preferred=state.cycle==='B'?legacyB:legacyA;const alternate=state.cycle==='B'?legacyA:legacyB;if(Array.isArray(preferred))return preferred;if(Array.isArray(alternate))return alternate;}
+    return null;
+  }
+  function sessionsFor(day){const custom=customSessionsFor(day);return Array.isArray(custom)?custom.map(x=>({name:String(x.name||''),duration:String(x.duration||'—')})):baseSessions(day)}
+  function parseLocalDate(iso){const parts=String(iso).split('-').map(Number);return new Date(parts[0],parts[1]-1,parts[2])}
+  function dayForDate(date){const id=weekdayIds[date.getDay()];return days.find(d=>d.id===id)||days[0]}
+  function sessionSignature(session){return String(session.name||'').trim().toLocaleLowerCase('pt-BR')+'|'+String(session.duration||'—').trim().toLocaleLowerCase('pt-BR')}
+  function syncCurrentStudyLog(day,sessions){
+    const date=isoDate(new Date());const previous=state.studyLog[date];const prior=Array.isArray(previous?.sessions)?previous.sessions:[];
+    const queues=new Map();prior.forEach(item=>{const sig=sessionSignature(item);if(!queues.has(sig))queues.set(sig,[]);queues.get(sig).push(item)});
+    const migrated=state.done&&typeof state.done==='object'?state.done:{};
+    const next=sessions.map((session,index)=>{const queue=queues.get(sessionSignature(session));const old=queue&&queue.length?queue.shift():null;return {name:session.name,duration:session.duration||'—',done:old?old.done===true:(!previous&&migrated[key(day.id,index)]===true)}});
+    state.studyLog[date]={cycle:state.cycle,sessions:next};return state.studyLog[date];
+  }
+  function getPlannedSessionsForDate(date){
+    const iso=isoDate(date);const saved=state.studyLog[iso];if(saved&&Array.isArray(saved.sessions))return saved.sessions;
+    const day=dayForDate(date);const custom=customSessionsFor(day);
+    return Array.isArray(custom)?custom.map(x=>({name:String(x.name||''),duration:String(x.duration||'—'),done:false})):baseSessions(day).map(x=>({...x,done:false}));
+  }
+  function isSummarySession(session){return /^(tempo total|total de horas|carga total)$/i.test(String(session.name||'').trim())}
   function durationInMinutes(value){
     const s=String(value||'').trim().toLowerCase().replace(/\s/g,'');
     if(!s||s==='—'||s==='-')return 0;
@@ -276,91 +521,180 @@ body{background:radial-gradient(900px 500px at 84% -18%,rgba(198,164,95,.105),tr
   }
   function prettyDuration(min){if(!min)return '—';if(min%60===0)return (min/60)+'h';return Math.floor(min/60)+'h'+String(min%60).padStart(2,'0')}
   function key(day,index){return day+'-'+index}
-  function updateProgress(day,sessions){
-    const count=sessions.length;const done=sessions.filter((s,i)=>!!state.done[key(day.id,i)]).length;const pct=count?Math.round(done/count*100):0;
+  function updateProgress(day,record){
+    const sessions=record.sessions.filter(s=>!isSummarySession(s));const count=sessions.length;const done=sessions.filter(s=>s.done===true).length;const pct=count?Math.round(done/count*100):0;
     $('progressText').textContent=done+' de '+count+' sessões concluídas';$('progressPct').textContent=pct+'%';$('todayProgress').style.width=pct+'%';
-    $('completionText').textContent=pct===100?'Missão cumprida. Excelente trabalho, Miguel.':'O progresso de hoje é salvo automaticamente.';
+    $('completionText').textContent=pct===100?'Missão cumprida. Excelente trabalho, '+(state.displayName||'guerreiro')+'.':'O progresso de hoje é salvo automaticamente.';
     $('completeDayBtn').style.display=done===count?'none':'inline-flex';
   }
   function renderToday(){
-    const day=currentDay(),sessions=sessionsFor(day),now=new Date();
+    const day=currentDay(),sessions=sessionsFor(day),now=new Date(),record=syncCurrentStudyLog(day,sessions);
     $('todayTitle').textContent=day.name;$('todayDate').textContent=now.toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
-    const minutes=sessions.reduce((sum,s)=>sum+durationInMinutes(s.duration),0);
-    $('todayLoad').textContent=day.weekend?(state.cycle==='A'?'Simulado':'Revisão'):prettyDuration(minutes);
-    $('loadLabel').textContent=day.weekend?'programação':'carga do dia';$('weekendMode').hidden=!day.weekend;
-    $('cycleA').setAttribute('aria-pressed',String(state.cycle!=='B'));$('cycleB').setAttribute('aria-pressed',String(state.cycle==='B'));
+    const minutes=sessions.filter(s=>!isSummarySession(s)).reduce((sum,s)=>sum+durationInMinutes(s.duration),0);
+    $('todayLoad').textContent=prettyDuration(minutes);
+    $('loadLabel').textContent='carga do dia';
     const host=$('sessionList');host.innerHTML='';
-    sessions.forEach((s,i)=>{
-      const row=document.createElement('label');row.className='session'+(state.done[key(day.id,i)]?' done':'');
-      const check=document.createElement('input');check.type='checkbox';check.className='check';check.checked=!!state.done[key(day.id,i)];check.setAttribute('aria-label','Marcar '+s.name+' como concluída');
-      check.addEventListener('change',()=>{state.done[key(day.id,i)]=check.checked;saveState();renderToday()});
+    record.sessions.forEach((s,i)=>{
+      const row=document.createElement('label');row.className='session'+(s.done?' done':'');
+      const check=document.createElement('input');check.type='checkbox';check.className='check';check.checked=!!s.done;check.setAttribute('aria-label','Marcar '+s.name+' como concluída');
+      check.addEventListener('change',()=>{record.sessions[i].done=check.checked;saveState();renderToday()});
       const text=document.createElement('span');text.className='session-content';const name=document.createElement('span');name.className='session-name';name.textContent=s.name;text.append(name);
       const right=document.createElement('span');right.className='session-right';const duration=document.createElement('span');duration.className='session-duration';duration.textContent=s.duration||'—';right.append(duration);
       row.append(check,text,right);host.append(row);
     });
-    updateProgress(day,sessions);
+    updateProgress(day,record);saveState();renderPerformance();
   }
-  function parseLocalDate(iso){const parts=iso.split('-').map(Number);return new Date(parts[0],parts[1]-1,parts[2])}
   function formatExamDate(iso,time){return parseLocalDate(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'})+' · '+time}
   function updateCountdown(){
     const dateParts=state.examDate.split('-').map(Number),timeParts=(state.examTime||'08:00').split(':').map(Number);
     const target=new Date(dateParts[0],dateParts[1]-1,dateParts[2],timeParts[0]||0,timeParts[1]||0,0,0);const diff=target.getTime()-Date.now();
-    if(diff<=0){$('countNumber').innerHTML='0<small>DIAS</small>';$('countHours').textContent='00';$('countMinutes').textContent='00';$('countSeconds').textContent='00';$('countCaption').textContent='A data programada chegou ou já passou.'}
-    else{const seconds=Math.floor(diff/1000);const d=Math.floor(seconds/86400);const h=Math.floor((seconds%86400)/3600);const m=Math.floor((seconds%3600)/60);const s=seconds%60;$('countNumber').innerHTML=d.toLocaleString('pt-BR')+'<small>DIAS</small>';$('countHours').textContent=String(h).padStart(2,'0');$('countMinutes').textContent=String(m).padStart(2,'0');$('countSeconds').textContent=String(s).padStart(2,'0');$('countCaption').textContent='tempo restante até o horário previsto da prova'}
+    if(diff<=0){$('countNumber').innerHTML='0<small>DIAS</small>';$('countHours').textContent='00';$('countMinutes').textContent='00';$('countSeconds').textContent='00'}
+    else{const seconds=Math.floor(diff/1000);const d=Math.floor(seconds/86400);const h=Math.floor((seconds%86400)/3600);const m=Math.floor((seconds%3600)/60);const s=seconds%60;$('countNumber').innerHTML=d.toLocaleString('pt-BR')+'<small>DIAS</small>';$('countHours').textContent=String(h).padStart(2,'0');$('countMinutes').textContent=String(m).padStart(2,'0');$('countSeconds').textContent=String(s).padStart(2,'0')}
     $('countDate').textContent=formatExamDate(state.examDate,state.examTime||'08:00');
   }
-  function applyAvatar(){const button=$('avatarButton'),img=$('avatarImage');if(state.avatar){img.src=state.avatar;button.classList.add('has-photo')}else{img.removeAttribute('src');button.classList.remove('has-photo')}}
-  function applyTheme(){document.documentElement.dataset.theme=state.theme;$('themeToggle').textContent=state.theme==='dark'?'Modo claro':'Modo escuro';$('themeToggle').setAttribute('aria-label',state.theme==='dark'?'Mudar para tema claro':'Mudar para tema escuro');$('themeColorMeta').content=state.theme==='dark'?'#0b0f15':'#f4f1e9'}
-  function openScheduleEditor(){const day=currentDay();$('scheduleDaySelect').value=day.id;$('scheduleCycleSelect').value=state.cycle;renderScheduleEditor();$('scheduleDialog').showModal()}
+  function formatStudyTime(minutes){if(!minutes)return '0h';const hours=Math.floor(minutes/60),mins=minutes%60;return hours+'h'+(mins?' '+mins+'min':'')}
+  function weeklyPerformance(){
+    const today=new Date();today.setHours(0,0,0,0);const monday=new Date(today);monday.setDate(monday.getDate()-((monday.getDay()+6)%7));
+    const tracking=parseLocalDate(state.trackingStartDate||isoDate(today));tracking.setHours(0,0,0,0);const start=tracking>monday?tracking:monday;
+    let planned=0,completed=0,minutes=0;
+    for(const cursor=new Date(start);cursor<=today;cursor.setDate(cursor.getDate()+1)){
+      const entries=getPlannedSessionsForDate(cursor).filter(s=>!isSummarySession(s));planned+=entries.length;
+      for(const entry of entries){if(entry.done===true){completed++;minutes+=durationInMinutes(entry.duration)}}
+    }
+    return {minutes,planned,completed,percent:planned?Math.round(completed/planned*100):0};
+  }
+  function scorePercent(result){const max=Number(result.maxScore)||0;return max>0?Math.max(0,Math.min(100,Number(result.score)/max*100)):0}
+  function average(values){return values.length?values.reduce((sum,value)=>sum+value,0)/values.length:null}
+  function monthKey(date){return date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')}
+  function monthLabel(date){return date.toLocaleDateString('pt-BR',{month:'short'}).replace('.','')}
+  function renderPerformanceChart(){
+    const host=$('performanceChart');const now=new Date();const months=[];
+    for(let offset=5;offset>=0;offset--){const date=new Date(now.getFullYear(),now.getMonth()-offset,1);months.push({key:monthKey(date),label:monthLabel(date),date,score:null})}
+    const buckets=new Map(months.map(m=>[m.key,[]]));
+    state.mockResults.forEach(result=>{if(!result||!result.date)return;const date=parseLocalDate(result.date);const bucket=buckets.get(monthKey(date));if(bucket)bucket.push(scorePercent(result))});
+    months.forEach(m=>{const vals=buckets.get(m.key)||[];m.score=vals.length?average(vals):null});
+    const width=720,height=214,left=42,right=14,top=14,bottom=38,plotWidth=width-left-right,plotHeight=height-top-bottom;
+    const x=i=>left+(months.length===1?plotWidth/2:i*plotWidth/(months.length-1));const y=v=>top+(100-v)*plotHeight/100;
+    let svg=`<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
+    [0,25,50,75,100].forEach(v=>{const yy=y(v);svg+=`<line x1="${left}" y1="${yy}" x2="${width-right}" y2="${yy}" stroke="currentColor" opacity=".12" stroke-dasharray="3 5"/><text x="${left-9}" y="${yy+3}" fill="currentColor" opacity=".55" font-size="9" text-anchor="end">${v}</text>`});
+    let segments=[],current=[];months.forEach((m,i)=>{if(m.score===null){if(current.length)segments.push(current);current=[]}else current.push([x(i),y(m.score),m.score,i])});if(current.length)segments.push(current);
+    segments.forEach(segment=>{if(segment.length>1)svg+=`<polyline points="${segment.map(p=>p[0]+','+p[1]).join(' ')}" fill="none" stroke="var(--gold-light)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>`;segment.forEach(point=>{svg+=`<circle cx="${point[0]}" cy="${point[1]}" r="4.3" fill="var(--gold-light)" stroke="var(--surface)" stroke-width="2"><title>${months[point[3]].label}: ${point[2].toFixed(1).replace('.',',')}%</title></circle>`})});
+    months.forEach((m,i)=>{svg+=`<text x="${x(i)}" y="${height-12}" fill="currentColor" opacity=".68" font-size="10" text-anchor="middle">${m.label}</text>`;if(m.score!==null)svg+=`<text x="${x(i)}" y="${Math.max(10,y(m.score)-11)}" fill="var(--gold-light)" font-size="9" text-anchor="middle" font-weight="700">${Math.round(m.score)}%</text>`});
+    svg+='</svg>';host.innerHTML=svg;
+    $('chartFootnote').textContent=state.mockResults.length?'As médias consideram somente os simulados registrados em cada mês.':'Registre os resultados dos seus simulados para visualizar sua evolução.';
+  }
+  function renderRecentResults(){
+    const host=$('recentResults');host.innerHTML='';const ordered=[...state.mockResults].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,5);
+    $('historyCount').textContent=state.mockResults.length+' '+(state.mockResults.length===1?'registro':'registros');
+    if(!ordered.length){const empty=document.createElement('p');empty.className='empty-results';empty.textContent='Nenhum resultado registrado ainda. Use “Registrar simulado” para começar seu histórico.';host.append(empty);return}
+    ordered.forEach(result=>{
+      const row=document.createElement('article');row.className='result-row';const main=document.createElement('div');main.className='result-row-main';const title=document.createElement('strong');title.textContent=result.name||'Simulado';const date=document.createElement('small');date.textContent=parseLocalDate(result.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});main.append(title,date);
+      const score=document.createElement('div');score.className='result-row-score';const value=document.createElement('strong');value.textContent=Number(result.score).toLocaleString('pt-BR')+' / '+Number(result.maxScore).toLocaleString('pt-BR');const pct=document.createElement('small');pct.textContent=scorePercent(result).toFixed(1).replace('.',',')+'%';score.append(value,pct);
+      const del=document.createElement('button');del.type='button';del.className='result-delete';del.textContent='Excluir registro';del.setAttribute('aria-label','Excluir '+(result.name||'simulado'));del.addEventListener('click',()=>{if(!confirm('Excluir este resultado do histórico?'))return;state.mockResults=state.mockResults.filter(item=>item.id!==result.id);saveState();renderPerformance();showToast('Resultado removido do histórico.')});
+      row.append(main,score,del);host.append(row);
+    });
+  }
+  function renderPerformance(){
+    const stats=weeklyPerformance();$('weeklyHours').textContent=formatStudyTime(stats.minutes);$('weeklyHoursNote').textContent=stats.completed+' de '+stats.planned+' sessões contabilizadas';$('weeklyCompliance').textContent=stats.percent+'%';$('weeklyComplianceNote').textContent=stats.completed+' concluídas · '+Math.max(0,stats.planned-stats.completed)+' pendentes';
+    $('mockCount').textContent=String(state.mockResults.length);const averageScore=average(state.mockResults.map(scorePercent));$('averageScore').textContent=averageScore===null?'—':averageScore.toFixed(1).replace('.',',')+'%';renderPerformanceChart();renderRecentResults();
+  }
+  function applyAvatar(){const button=$('avatarButton'),img=$('avatarImage'),preview=$('settingsAvatarPreview'),previewImg=$('avatarSettingsImage'),large=$('avatarLargePreview'),largeImg=$('avatarLargeImage');if(state.avatar){img.src=state.avatar;button.classList.add('has-photo');previewImg.src=state.avatar;preview.classList.add('has-photo');largeImg.src=state.avatar;large.classList.add('has-photo')}else{img.removeAttribute('src');button.classList.remove('has-photo');previewImg.removeAttribute('src');preview.classList.remove('has-photo');largeImg.removeAttribute('src');large.classList.remove('has-photo')}const initial=(state.displayName||'M').trim().charAt(0).toLocaleUpperCase('pt-BR')||'M';document.querySelector('.avatar-initial').textContent=initial;$('settingsAvatarInitial').textContent=initial;$('avatarLargeInitial').textContent=initial}
+  function renderMotivation(){const text=String(state.motivation||'').trim();$('motivationText').textContent=text||'Defina uma mensagem que fortaleça sua missão.';$('motivationCredit').textContent=String(state.motivationCredit||'').trim();$('motivationCredit').hidden=!String(state.motivationCredit||'').trim()}
+  function applyTheme(){document.documentElement.dataset.theme=state.theme;$('themeToggle').textContent=state.theme==='dark'?'Modo claro':'Modo escuro';$('themeToggle').setAttribute('aria-label',state.theme==='dark'?'Mudar para tema claro':'Mudar para tema escuro');$('themeColorMeta').content=state.theme==='dark'?'#0b0f15':'#f4f1e9';if($('themeSetting'))$('themeSetting').value=state.theme}
+  function applyDisplayDensity(){document.documentElement.dataset.density=state.displayDensity==='compact'?'compact':'comfortable';if($('densitySetting'))$('densitySetting').value=state.displayDensity}
+  function updateNotificationStatus(){const checkbox=$('notificationOptIn'),status=$('notificationStatus');if(!('Notification' in window)){checkbox.disabled=true;checkbox.checked=false;status.textContent='Este navegador não oferece notificações.';return}checkbox.checked=state.notificationsEnabled===true;if(Notification.permission==='granted')status.textContent='Permissão concedida. Lembretes automáticos ainda não estão ativos.';else if(Notification.permission==='denied')status.textContent='Permissão bloqueada no navegador. Altere nas configurações do site.';else status.textContent='O navegador solicitará permissão quando você ativar.'}
+  function openSettings(){
+    $('settingsName').value=state.displayName||'Miguel';$('motivationInput').value=state.motivation||'';$('motivationCreditInput').value=state.motivationCredit||'';$('themeSetting').value=state.theme;$('densitySetting').value=state.displayDensity||'comfortable';updateNotificationStatus();
+    $('settingsDialog').showModal();
+  }
+  function openResultDialog(){ $('resultName').value='Simulado EsPCEx';$('resultDate').value=isoDate(new Date());$('resultScore').value='';$('resultMax').value='100';$('resultDialog').showModal(); }
+  function applyProfileSettings(){
+    $('displayName').textContent=state.displayName||'Estudante';document.querySelector('.avatar-button').setAttribute('aria-label','Foto de perfil de '+(state.displayName||'estudante'));renderMotivation();applyAvatar();
+  }
+  function saveSettings(event){
+    event.preventDefault();const name=$('settingsName').value.trim();if(!name){showToast('Informe um nome para o perfil.');$('settingsName').focus();return}
+    state.displayName=name;state.motivation=$('motivationInput').value.trim();state.motivationCredit=$('motivationCreditInput').value.trim();state.theme=$('themeSetting').value==='light'?'light':'dark';state.displayDensity=$('densitySetting').value==='compact'?'compact':'comfortable';saveState();applyProfileSettings();applyTheme();applyDisplayDensity();$('settingsDialog').close();showToast('Personalizações salvas.');
+  }
+  function saveMockResult(event){
+    event.preventDefault();const name=$('resultName').value.trim()||'Simulado EsPCEx',date=$('resultDate').value,score=Number($('resultScore').value),maxScore=Number($('resultMax').value);
+    if(!date||!Number.isFinite(score)||!Number.isFinite(maxScore)||maxScore<=0||score<0||score>maxScore){showToast('Confira a data e informe uma pontuação válida.');return}
+    if(parseLocalDate(date)>new Date(new Date().setHours(23,59,59,999))){showToast('A data do simulado não pode estar no futuro.');return}
+    const id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():'result-'+Date.now()+'-'+Math.random().toString(16).slice(2);
+    state.mockResults.push({id,name,date,score,maxScore,createdAt:new Date().toISOString()});state.mockResults.sort((a,b)=>String(a.date).localeCompare(String(b.date)));saveState();$('resultDialog').close();renderPerformance();showToast('Resultado registrado no painel.');
+  }
+
+  const SUBJECT_PRESETS=['Matemática','Português','Física','Química','História','Geografia','Inglês','Redação','Simulado completo','Simulado','Correção de questões','Revisão','Revisão de conteúdo','Leitura','Planejamento'];
+  function openScheduleEditor(){const day=currentDay();$('scheduleDaySelect').value=day.id;renderScheduleEditor();$('scheduleDialog').showModal()}
   function editorTargetDay(){return days.find(d=>d.id===$('scheduleDaySelect').value)||currentDay()}
-  function addEditorRow(name='',duration='1h'){
+  function updateScheduleLoad(){const total=[...$('scheduleRows').querySelectorAll('.edit-row')].reduce((sum,row)=>{const duration=row.querySelector('.duration-input')?.value||'';const isSummary=/^(tempo total|total de horas|carga total)$/i.test(getEditorRowName(row));return sum+(isSummary?0:durationInMinutes(duration))},0);$('scheduleLoadTotal').textContent=prettyDuration(total)}
+  function getEditorRowName(row){const select=row.querySelector('.subject-select');if(!select)return '';if(select.value==='__custom__')return row.querySelector('.custom-subject-input')?.value.trim()||'';return select.value}
+  function addEditorRow(name='Matemática',duration='1h'){
     const row=document.createElement('div');row.className='edit-row';
-    const nameInput=document.createElement('input');nameInput.type='text';nameInput.maxLength=65;nameInput.placeholder='Nome da matéria';nameInput.value=name;nameInput.setAttribute('aria-label','Nome da matéria ou atividade');
-    const durationInput=document.createElement('input');durationInput.type='text';durationInput.maxLength=8;durationInput.placeholder='1h30';durationInput.value=duration;durationInput.setAttribute('aria-label','Tempo de estudo');
-    const del=document.createElement('button');del.type='button';del.className='delete-row';del.textContent='Excluir';del.addEventListener('click',()=>row.remove());
-    row.append(nameInput,durationInput,del);$('scheduleRows').append(row);
+    const choice=document.createElement('div');choice.className='subject-choice';
+    const subjectSelect=document.createElement('select');subjectSelect.className='subject-select';subjectSelect.setAttribute('aria-label','Selecionar matéria ou atividade');
+    const customOption=document.createElement('option');customOption.value='__custom__';customOption.textContent='Outra matéria / atividade…';
+    const isPreset=SUBJECT_PRESETS.includes(name);
+    if(name&&!isPreset){const existing=document.createElement('option');existing.value='__custom__';existing.textContent='Personalizada: '+name;subjectSelect.append(existing)}
+    SUBJECT_PRESETS.forEach(subject=>{const option=document.createElement('option');option.value=subject;option.textContent=subject;subjectSelect.append(option)});
+    if(![...subjectSelect.options].some(o=>o.value==='__custom__'))subjectSelect.append(customOption);
+    subjectSelect.value=isPreset?name:'__custom__';
+    const customInput=document.createElement('input');customInput.className='custom-subject-input';customInput.type='text';customInput.maxLength=65;customInput.placeholder='Digite outra matéria ou atividade';customInput.value=isPreset?'':(name||'');customInput.setAttribute('aria-label','Nome personalizado da matéria');customInput.hidden=isPreset;
+    const refreshChoice=()=>{const custom=subjectSelect.value==='__custom__';customInput.hidden=!custom;if(custom&&!customInput.value)customInput.focus();updateScheduleLoad()};
+    subjectSelect.addEventListener('change',refreshChoice);customInput.addEventListener('input',updateScheduleLoad);
+    choice.append(subjectSelect,customInput);
+    const durationInput=document.createElement('input');durationInput.className='duration-input';durationInput.type='text';durationInput.maxLength=8;durationInput.placeholder='1h30';durationInput.value=duration;durationInput.setAttribute('aria-label','Tempo de estudo');durationInput.addEventListener('input',updateScheduleLoad);
+    const del=document.createElement('button');del.type='button';del.className='delete-row';del.textContent='Excluir';del.addEventListener('click',()=>{row.remove();updateScheduleLoad()});
+    row.append(choice,durationInput,del);$('scheduleRows').append(row);updateScheduleLoad();
   }
   function renderScheduleEditor(){
-    const day=editorTargetDay(),cycle=$('scheduleCycleSelect').value==='B'?'B':'A';$('scheduleCycleWrap').style.display=day.weekend?'grid':'none';
-    const custom=state.customSchedules[scheduleKey(day,cycle)];const entries=Array.isArray(custom)?custom:baseSessions(day,cycle);$('scheduleRows').innerHTML='';entries.forEach(x=>addEditorRow(x.name,x.duration));
+    const day=editorTargetDay();const custom=customSessionsFor(day);const entries=Array.isArray(custom)?custom:baseSessions(day);$('scheduleRows').innerHTML='';entries.forEach(x=>addEditorRow(x.name,x.duration));updateScheduleLoad();
   }
   function saveScheduleEditor(event){
-    event.preventDefault();const day=editorTargetDay();const newCycle=$('scheduleCycleSelect').value==='B'?'B':'A';if(day.weekend)state.cycle=newCycle;
+    event.preventDefault();const day=editorTargetDay();
     const rows=[...$('scheduleRows').querySelectorAll('.edit-row')];const entries=[];
-    for(const row of rows){const inputs=row.querySelectorAll('input');const name=inputs[0].value.trim();const duration=inputs[1].value.trim()||'—';
-      if(!name){showToast('Preencha o nome de todas as matérias ou exclua a linha vazia.');return}
+    for(const row of rows){const name=getEditorRowName(row);const duration=row.querySelector('.duration-input').value.trim()||'—';
+      if(!name){showToast('Escolha uma matéria ou informe uma atividade personalizada.');return}
       if(duration!=='—'&&duration!=='-'&&!/^(\d+h(\d{1,2})?|\d+min|\d+:\d{2}|\d+)$/i.test(duration.replace(/\s/g,''))){showToast('Use o tempo no formato 1h, 1h30 ou 30min.');return}
       entries.push({name,duration});
     }
     if(!entries.length){showToast('Adicione ao menos uma matéria ou atividade.');return}
-    state.customSchedules[scheduleKey(day,newCycle)]=entries;
+    state.customSchedules[day.id]=entries;delete state.customSchedules[day.id+'-A'];delete state.customSchedules[day.id+'-B'];
     Object.keys(state.done).forEach(k=>{if(k.startsWith(day.id+'-'))delete state.done[k]});
     saveState();renderToday();$('scheduleDialog').close();showToast('Rotina atualizada e salva.');
   }
-  $('avatarButton').addEventListener('click',()=>$('avatarInput').click());
+  $('avatarButton').addEventListener('click',()=>{$('avatarPreviewDialog').showModal()});
+  $('closeAvatarPreviewBtn').addEventListener('click',()=>$('avatarPreviewDialog').close());
+  $('closeAvatarPreviewAction').addEventListener('click',()=>$('avatarPreviewDialog').close());
   $('avatarInput').addEventListener('change',event=>{
     const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){showToast('Selecione um arquivo de imagem.');return}
     const reader=new FileReader();reader.onload=()=>{const source=new Image();source.onload=()=>{const size=320;const scale=Math.min(1,size/Math.max(source.width,source.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(source.width*scale));canvas.height=Math.max(1,Math.round(source.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(source,0,0,canvas.width,canvas.height);state.avatar=canvas.toDataURL('image/jpeg',.82);saveState();applyAvatar();showToast('Foto de perfil atualizada.')};source.onerror=()=>showToast('Não foi possível abrir essa imagem.');source.src=reader.result};reader.onerror=()=>showToast('Falha ao carregar a imagem.');reader.readAsDataURL(file);event.target.value='';
   });
   $('removePhotoBtn').addEventListener('click',()=>{state.avatar='';saveState();applyAvatar();document.querySelector('.utility').open=false;showToast('Foto de perfil removida.')});
-  $('cycleA').addEventListener('click',()=>{state.cycle='A';saveState();renderToday()});$('cycleB').addEventListener('click',()=>{state.cycle='B';saveState();renderToday()});
-  $('completeDayBtn').addEventListener('click',()=>{const day=currentDay();sessionsFor(day).forEach((s,i)=>state.done[key(day.id,i)]=true);saveState();renderToday();showToast('Missão de hoje concluída.')});
-  $('editScheduleBtn').addEventListener('click',openScheduleEditor);$('scheduleDaySelect').addEventListener('change',renderScheduleEditor);$('scheduleCycleSelect').addEventListener('change',renderScheduleEditor);$('addScheduleRow').addEventListener('click',()=>addEditorRow());$('scheduleForm').addEventListener('submit',saveScheduleEditor);
+  $('openSettingsBtn').addEventListener('click',openSettings);$('closeSettingsBtn').addEventListener('click',()=>$('settingsDialog').close());$('cancelSettingsBtn').addEventListener('click',()=>$('settingsDialog').close());$('settingsForm').addEventListener('submit',saveSettings);$('chooseAvatarBtn').addEventListener('click',()=>$('avatarInput').click());
+  $('settingsEditScheduleBtn').addEventListener('click',()=>{$('settingsDialog').close();openScheduleEditor()});$('settingsEditDateBtn').addEventListener('click',()=>{$('settingsDialog').close();$('examDateInput').value=state.examDate;$('examTimeInput').value=state.examTime||'08:00';$('dateDialog').showModal()});
+  $('notificationOptIn').addEventListener('change',async()=>{const checkbox=$('notificationOptIn');if(!checkbox.checked){state.notificationsEnabled=false;saveState();updateNotificationStatus();showToast('Notificações desativadas.');return}if(!('Notification' in window)){checkbox.checked=false;showToast('Notificações não são compatíveis com este navegador.');return}let permission=Notification.permission;if(permission!=='granted'&&permission!=='denied'){try{permission=await Notification.requestPermission()}catch(e){permission='denied'}}if(permission==='granted'){state.notificationsEnabled=true;saveState();showToast('Permissão de notificações concedida.')}else{state.notificationsEnabled=false;checkbox.checked=false;showToast('Permissão de notificações não concedida.')}updateNotificationStatus()});
+  $('openResultBtn').addEventListener('click',openResultDialog);$('closeResultBtn').addEventListener('click',()=>$('resultDialog').close());$('cancelResultBtn').addEventListener('click',()=>$('resultDialog').close());$('resultForm').addEventListener('submit',saveMockResult);
+  $('completeDayBtn').addEventListener('click',()=>{const day=currentDay(),record=syncCurrentStudyLog(day,sessionsFor(day));record.sessions.forEach(s=>{if(!isSummarySession(s))s.done=true});saveState();renderToday();showToast('Missão de hoje concluída.')});
+  $('editScheduleBtn').addEventListener('click',openScheduleEditor);$('scheduleDaySelect').addEventListener('change',renderScheduleEditor);$('addScheduleRow').addEventListener('click',()=>addEditorRow());$('scheduleForm').addEventListener('submit',saveScheduleEditor);
   $('cancelScheduleBtn').addEventListener('click',()=>$('scheduleDialog').close());$('closeScheduleBtn').addEventListener('click',()=>$('scheduleDialog').close());
   $('editDateBtn').addEventListener('click',()=>{$('examDateInput').value=state.examDate;$('examTimeInput').value=state.examTime||'08:00';$('dateDialog').showModal()});
   $('cancelDateBtn').addEventListener('click',()=>$('dateDialog').close());
   $('dateForm').addEventListener('submit',event=>{event.preventDefault();const value=$('examDateInput').value,time=$('examTimeInput').value||'08:00';if(!value)return;const [y,m,d]=value.split('-').map(Number),[h,min]=time.split(':').map(Number),target=new Date(y,m-1,d,h,min);if(target.getTime()<=Date.now()){showToast('Escolha uma data e horário futuros.');return}state.examDate=value;state.examTime=time;saveState();updateCountdown();$('dateDialog').close();showToast('Data e horário da prova atualizados.')});
   $('themeToggle').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';saveState();applyTheme()});
-  $('resetBtn').addEventListener('click',()=>{if(confirm('Zerar as sessões concluídas de hoje?')){const day=currentDay();Object.keys(state.done).forEach(k=>{if(k.startsWith(day.id+'-'))delete state.done[k]});saveState();renderToday();document.querySelector('.utility').open=false;showToast('Progresso de hoje zerado.')}});
-  $('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'MISSÃO EsPCEx',version:3,exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='backup-missao-espcex.json';a.click();URL.revokeObjectURL(url);document.querySelector('.utility').open=false;showToast('Backup exportado.')});
-  $('importInput').addEventListener('change',async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data.state||typeof data.state.done!=='object')throw new Error('Formato inválido');state={...emptyState(),...state,...data.state,done:data.state.done,cycle:data.state.cycle==='B'?'B':'A',customSchedules:data.state.customSchedules&&typeof data.state.customSchedules==='object'?data.state.customSchedules:{},theme:data.state.theme==='light'?'light':'dark'};saveState();applyAvatar();applyTheme();updateCountdown();renderToday();showToast('Backup importado.')}catch(e){showToast('Arquivo de backup inválido.')}event.target.value='';document.querySelector('.utility').open=false});
+  $('resetBtn').addEventListener('click',()=>{if(confirm('Zerar as sessões concluídas de hoje?')){const day=currentDay(),record=syncCurrentStudyLog(day,sessionsFor(day));record.sessions.forEach(session=>{session.done=false});Object.keys(state.done).forEach(k=>{if(k.startsWith(day.id+'-'))delete state.done[k]});saveState();renderToday();document.querySelector('.utility').open=false;showToast('Progresso de hoje zerado.')}});
+  $('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'MISSÃO EsPCEx',version:5,exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='backup-missao-espcex.json';a.click();URL.revokeObjectURL(url);document.querySelector('.utility').open=false;showToast('Backup exportado.')});
+  $('importInput').addEventListener('change',async event=>{const file=event.target.files&&event.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!data.state||typeof data.state.done!=='object')throw new Error('Formato inválido');state={...emptyState(),...state,...data.state,done:data.state.done,cycle:data.state.cycle==='B'?'B':'A',customSchedules:data.state.customSchedules&&typeof data.state.customSchedules==='object'?data.state.customSchedules:{},theme:data.state.theme==='light'?'light':'dark',displayName:typeof data.state.displayName==='string'?data.state.displayName:'Miguel',motivation:typeof data.state.motivation==='string'?data.state.motivation:emptyState().motivation,motivationCredit:typeof data.state.motivationCredit==='string'?data.state.motivationCredit:'',displayDensity:data.state.displayDensity==='compact'?'compact':'comfortable',studyLog:data.state.studyLog&&typeof data.state.studyLog==='object'?data.state.studyLog:{},mockResults:Array.isArray(data.state.mockResults)?data.state.mockResults:[],notificationsEnabled:data.state.notificationsEnabled===true};saveState();applyAvatar();applyTheme();applyDisplayDensity();applyProfileSettings();updateNotificationStatus();updateCountdown();renderToday();showToast('Backup importado.')}catch(e){showToast('Arquivo de backup inválido.')}event.target.value='';document.querySelector('.utility').open=false});
   $('downloadSourceBtn').addEventListener('click',()=>{const source='<!DOCTYPE html>\n'+document.documentElement.outerHTML;const blob=new Blob([source],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Missao_EsPCEx_editavel.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1200);document.querySelector('.utility').open=false;showToast('Cópia editável do aplicativo baixada.')});
   let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('installButton').hidden=false});
   $('installButton').addEventListener('click',async()=>{if(!deferredInstall){showToast('Use o instalador para Windows incluído no pacote do aplicativo.');return}deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('installButton').hidden=true});
   if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
   let lastDay='';function checkDayRollover(){const date=isoDate(new Date());if(date!==lastDay){lastDay=date;renderToday()}}
+  function setupWelcomeSplash(){const splash=$('welcomeSplash');let seen=false;try{seen=sessionStorage.getItem('missao-espcex-welcome-seen')==='1'}catch(e){}if(seen){splash.hidden=true;return}document.body.classList.add('splash-open');$('enterMissionBtn').addEventListener('click',()=>{try{sessionStorage.setItem('missao-espcex-welcome-seen','1')}catch(e){}splash.classList.add('is-leaving');document.body.classList.remove('splash-open');setTimeout(()=>{splash.hidden=true},480)});}
   if(!state.examDate)state.examDate=defaultExamDate();if(!state.examTime)state.examTime='08:00';
-  applyAvatar();applyTheme();updateCountdown();renderToday();lastDay=isoDate(new Date());
+  if(!state.trackingStartDate)state.trackingStartDate=isoDate(new Date());
+  if(!state.studyLog||typeof state.studyLog!=='object')state.studyLog={};
+  if(!Array.isArray(state.mockResults))state.mockResults=[];
+  setupWelcomeSplash();applyAvatar();applyTheme();applyDisplayDensity();applyProfileSettings();updateNotificationStatus();updateCountdown();renderToday();lastDay=isoDate(new Date());saveState();
   setInterval(()=>{updateCountdown();checkDayRollover()},1000);window.addEventListener('focus',()=>{checkDayRollover();updateCountdown()});
 })();
 </script>
